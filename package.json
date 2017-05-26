@@ -1,0 +1,33 @@
+{
+  "name": "tutors",
+  "version": "0.0.1",
+  "description": "This app connects tutors and students and allows them to schedule appointments. It also displays information about registered tutors that the public can access.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andrewzahler/tutors.git"
+  },
+  "keywords": [
+    "tutors",
+    "tutoring",
+    "node",
+    "express",
+    "mysql",
+    "sequelize"
+  ],
+  "author": "Andrew Zahler",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andrewzahler/tutors/issues"
+  },
+  "homepage": "https://github.com/andrewzahler/tutors#readme",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express-handlebars": "^3.0.0",
+    "mysql": "^2.13.0"
+  }
+}
