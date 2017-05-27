@@ -1,9 +1,146 @@
-<div class="row">
-  <div class="col-md-6 col-sm-12">
-    <h3>{{Title}}</h3>
-    {{#if Settings.show}}
-      {{Description}}
-    {{/if}}
-  </div>
-</div>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+    <style type="text/css">
+    body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    /*background-image: url("bg.jpeg");*/
+    }
+    main {
+    flex: 1 0 auto;
+    }
+    .logo{
+    margin-left: 10px;
+    }
+    .card-img{
+    width: 100px;
+    height: 300px;
+    }
+    #regForm{
+    position:relative;
+    left: 400px;
+    margin-top: 80px;
+    margin-bottom: 80px;
+    border-style: solid;
+    width: 800px;
+    border-color: rgb(238, 110, 115);
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav class="animated slideInDown">
+        <div class="nav-wrapper">
+          <a href="#" class="brand-logo logo">Tutor Finder</a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="sass.html">About</a></li>
+            <li><a href="badges.html">Contact</a></li>
+            <li><a href="collapsible.html">Sign In/Up</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <main>
 
+
+
+
+    <div id="regForm">
+      <div class="container">
+        <div class="row">
+          <form class="col s12">
+            <div class="row">
+              <div class="input-field col s12">
+                <select>
+                  <option value="" disabled selected>Choose your Role</option>
+                  <option value="1">Student</option>
+                  <option value="2">Tutor</option>
+                </select>
+                <label>Sign up:</label>
+              </div>
+              <div class="col s12">
+                Enter a valid email please:
+                <div class="input-field inline">
+                  <input id="email" type="email" class="validate">
+                  <label for="email" data-error="wrong" data-success="right">Email</label>
+                </div>
+              </div>
+            </div>
+            
+            
+            <div class="input-field col s6">
+              <input placeholder"" id="User_name" type="text" class="validate">
+              <label for="user_name">User Name</label>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="password" type="password" class="validate">
+                <label for="password">Password</label>
+              </div>
+            </div>
+            <div class="input-field col s12">
+              <select multiple>
+                <option value="" disabled selected>Choose your Subject</option>
+                <option value="1">Math</option>
+                <option value="2">History</option>
+                <option value="3">Creative Writing</option>
+              </select>
+              <label>Subject</label>
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+    
+
+
+
+
+
+
+
+
+
+    </main>
+    <footer class="page-footer animated slideInUp">
+      <div class="container">
+        <div class="row">
+          <div class="col l6 s12">
+            <h5 class="white-text">Footer Content</h5>
+            <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+          </div>
+          <div class="col l4 offset-l2 s12">
+            <h5 class="white-text">Links</h5>
+            <ul>
+              <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+              <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-copyright">
+        <div class="container">
+          © 2017 Copyright Deloreans
+          <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+        </div>
+      </div>
+    </footer>
+
+    <script type="text/javascript">
+    $(document).ready(function() {
+    $('select').material_select();
+    });  
+    
+    </script>
+  </body>
+</html>
