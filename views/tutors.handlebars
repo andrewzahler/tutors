@@ -18,7 +18,6 @@
     }
     main {
     flex: 1 0 auto;
-    height:70%;
     }
     .logo{
     margin-left: 10px;
@@ -27,22 +26,14 @@
     width: 100px;
     height: 300px;
     }
-
-    img.profile-img { height: 36px; position: relative; top: 14px }
-
-    .glyphicon {  margin-bottom: 10px;margin-right: 10px;}
-    
-    small {
-    display: block;
-    line-height: 1.428571429;
-    color: #999;
-    }
-
-
-    .well {
-    background: #f0ad4e;
-    }
-    #profileCard{position:relative; left: 500px;}
+    #regForm{
+    position:relative;
+    left: 400px;
+    margin-top: 80px;
+    margin-bottom: 80px;
+    border-style: solid;
+    width: 800px;
+    border-color: rgb(238, 110, 115);
     </style>
   </head>
   <body>
@@ -59,91 +50,53 @@
       </nav>
     </header>
     <main>
-
-
-
-
-    <div class="row" id="profileCard">
-      <div class="col s12 m6">
-        <div class="card blue-grey darken-1">
-          <div class="card-content white-text">
-            <span class="card-title">Tutor-info</span><ul>
-              <li><a id="userName" class="right dropdown-button white-text text-darken-1" href="#!" data-constrainwidth="false" data-beloworigin="true" data-activates="profileopt">JoeyB<img style="height:150px;" class="circle" src="https://avatars0.githubusercontent.com/u/24356249?v=3&s=40"></a></li>
-            </ul>
+    <div id="regForm">
+      <div class="container">
+        <div class="row">
+          <form class="col s12">
             <div class="row">
-              <div class="col s3">
-                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+              <div class="input-field col s12">
+                <select>
+                  <option value="" disabled selected>Choose your Role</option>
+                  <option value="1">Student</option>
+                  <option value="2">Tutor</option>
+                </select>
+                <label>Sign up:</label>
               </div>
-              <div class="col s3">
-                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-              </div>
-              <div class="col s3">
-                Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+              <div class="col s12">
+                Enter a valid email please:
+                <div class="input-field inline">
+                  <input id="email" type="email" class="validate">
+                  <label for="email" data-error="wrong" data-success="right">Email</label>
+                </div>
               </div>
             </div>
-          </div>
-          <div class="divider"></div>
-          <div class="card-action">
-            <a href="#">This is a link</a>
-            <a href="#">This is a link</a>
-            <ul id="profileopt" class="dropdown-content">
-              <li><a href="#!">My profile</a></li>
-              <li><a href="#!">Settings</a></li>
-              <li><a href="#!">Achievements</a></li>
-              <li class="divider"></li>
-              <li><a href="#!">Logout</a></li>
-            </ul>                       
-          </div>
+
+
+            <div class="input-field col s6">
+              <input placeholder"" id="User_name" type="text" class="validate">
+              <label for="user_name">User Name</label>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="password" type="password" class="validate">
+                <label for="password">Password</label>
+              </div>
+            </div>
+            <div class="input-field col s12">
+              <select multiple>
+                <option value="" disabled selected>Choose your Subject</option>
+                <option value="1">Math</option>
+                <option value="2">History</option>
+                <option value="3">Creative Writing</option>
+              </select>
+              <label>Subject</label>
+            </div>
+          </form>
         </div>
       </div>
     </div>
 
-
-
-
-<div class="container">
-<div class="avatarContent">
-    <ul class="collection">
-      <li class="collection-item avatar">
-        <img src="images/yuna.jpg" alt="" class="circle">
-        <span class="title">Title</span>
-        <p>First Line <br>
-          Second Line
-        </p>
-        <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-      </li>
-      <li class="collection-item avatar">
-        <i class="material-icons circle">folder</i>
-        <span class="title">Title</span>
-        <p>First Line <br>
-          Second Line
-        </p>
-        <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-      </li>
-      <li class="collection-item avatar">
-        <i class="material-icons circle green">insert_chart</i>
-        <span class="title">Title</span>
-        <p>First Line <br>
-          Second Line
-        </p>
-        <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-      </li>
-      <li class="collection-item avatar">
-        <i class="material-icons circle red">play_arrow</i>
-        <span class="title">Title</span>
-        <p>First Line <br>
-          Second Line
-        </p>
-        <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-      </li>
-        </ul>
-</div>
-</div>
-
-
-
-
-    
     </main>
     <footer class="page-footer animated slideInUp">
       <div class="container">
@@ -163,17 +116,16 @@
       </div>
       <div class="footer-copyright">
         <div class="container">
-          © 2017 Copyright Deloreans
+          Ã‚Â© 2017 Copyright Deloreans
           <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
         </div>
       </div>
     </footer>
-
     <script type="text/javascript">
     $(document).ready(function() {
     $('select').material_select();
-    });  
-    
+    });
+
     </script>
   </body>
 </html>
