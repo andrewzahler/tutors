@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title></title>
+    <title>{{title}}</title>
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
     <link rel="stylesheet" type="text/css" href="style.css">
@@ -37,6 +37,10 @@
     </style>
   </head>
   <body>
+
+
+
+    
     <header>
       <nav class="animated slideInDown">
         <div class="nav-wrapper">
@@ -56,50 +60,63 @@
 
     <div id="regForm">
       <div class="container">
-        <div class="row">
-          <form class="col s12">
-            <div class="row">
-              <div class="input-field col s12">
-                <select>
-                  <option value="" disabled selected>Choose your Role</option>
-                  <option value="1">Student</option>
-                  <option value="2">Tutor</option>
-                </select>
-                <label>Sign up:</label>
-              </div>
-              <div class="col s12">
-                Enter a valid email please:
-                <div class="input-field inline">
-                  <input id="email" type="email" class="validate">
-                  <label for="email" data-error="wrong" data-success="right">Email</label>
-                </div>
-              </div>
-            </div>
-            
-            
-            <div class="input-field col s6">
-              <input placeholder"" id="User_name" type="text" class="validate">
-              <label for="user_name">User Name</label>
-            </div>
-            <div class="row">
-              <div class="input-field col s12">
-                <input id="password" type="password" class="validate">
-                <label for="password">Password</label>
-              </div>
-            </div>
+        <div class="row">        
+          <form action="/register" method="post" class="col s12">
+          <div class="row">
             <div class="input-field col s12">
-              <select multiple>
-                <option value="" disabled selected>Choose your Subject</option>
-                <option value="1">Math</option>
-                <option value="2">History</option>
-                <option value="3">Creative Writing</option>
+              <select>
+                <option value="0" disabled selected>Choose your Role</option>
+                <option value="1" name="student">Student</option>
+                <option value="2" name="tutor">Tutor</option>
               </select>
-              <label>Subject</label>
+              <label>Sign up:</label>
             </div>
-
-          </form>
+            <div class="col s12">
+              Enter a valid email please:
+              <div class="input-field inline">
+                <input id="email" type="email" class="validate">
+                <label for="email" data-error="wrong" data-success="right">Email</label>
+              </div>
+            </div>
+          </div>          
+          <div class="input-field col s6">
+            <input placeholder"DocBrown" id="User_name" type="text" class="validate">
+            <label for="user_name">User Name</label>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="password" type="password" class="validate">
+              <label for="password">Password</label>
+            </div>
+          </div>
+          <div class="col s12">
+            Phone number:
+            <div class="input-field inline">
+              <input id="phone" type="phone" class="validate">
+              <label for="phone" data-error="wrong" data-success="right">555-555-1234</label>
+            </div>
+          </div>                
+          <div  class="row">
+            <div class="input-field col s12">
+              <i class="material-icons prefix"></i>
+              <textarea id="address" class="materialize-textarea"></textarea>
+              <label for="address">Address</label>
+            </div>
+          </div>        
+        </div> 
+        <div class="input-field col s12">
+          <select multiple>
+            <option value="" disabled selected>Choose your Subject</option>
+            <option value="1">Math</option>
+            <option value="2">English</option>
+            <option value="3">Web-Development</option>
+          </select>
+          <label>Subject</label>
+          <button type="submit">Submit</button>
         </div>
+          </form>
       </div>
+    </div>
     </div>
     
 
