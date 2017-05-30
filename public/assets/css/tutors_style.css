@@ -1,0 +1,79 @@
+
+
+
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    /*background-image: url("bg.jpeg");*/
+}
+
+main {
+    flex: 1 0 auto;
+}
+nav, footer{
+	font-family: 'Acme', sans-serif;
+}
+.logo {
+    margin-left: 10px;
+    /*font-family: 'Handlee', cursive;*/
+}
+
+.card-img {
+    width: 100px;
+    height: 300px;
+}
+
+.toast-style {
+    background-color: #e57373;
+}
+
+.header-bg{
+	margin-top: 40px;
+	text-align: center;
+	/*font-family: 'Handlee', cursive;*/
+	padding: 15px;
+	background-color: #ffebee ;
+	/*opacity: 0.5;*/
+}
+.header-txt{
+	margin-bottom: 0px;
+	margin-top: 0px;
+	color: #ef5350;
+	font-weight: bold;
+	/*opacity: 100%;*/
+	/*background-color: #fff;*/
+	/*padding: 15px;*/
+
+}
+.header-students{
+	margin-top: 10px;
+	background-color: #ffebee;
+	margin-bottom: 0px;
+	color: #ef5350;
+	font-weight: bold;
+}
+
+.popular-car{
+
+	width: 300px;
+	height: 300px;
+}
+.card{
+	background-color: #ffebee;
+	color: #ef5350;
+}
+
+.subject-row, .totur-row{
+	margin-top: 15px;
+}
+/*
+h1.super-header {
+    line-height: 1;
+    font-size: 60px
+}
+
+h1 {
+    font-size: 42px
+}*/

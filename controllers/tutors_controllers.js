@@ -5,7 +5,9 @@ var router = express.Router();
 var db = require("../models");
 
 
-
+router.get('/index', function(req, res, next){
+	res.render('index');
+})
 
 
 router.get('/register', function(req, res, next){
