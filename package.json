@@ -27,7 +27,9 @@
   "homepage": "https://github.com/andrewzahler/tutors#readme",
   "dependencies": {
     "body-parser": "^1.17.2",
+    "express": "^4.15.3",
     "express-handlebars": "^3.0.0",
-    "mysql": "^2.13.0"
+    "mysql": "^2.13.0",
+    "sequelize": "^3.30.4"
   }
 }
