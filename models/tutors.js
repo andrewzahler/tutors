@@ -1,13 +1,13 @@
 module.exports = function(sequelize, DataTypes) {
 
 	var Tutor = sequelize.define("Tutor", {
-		tId: {
+		tid: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			autoIncrement: true,
 			primaryKey: true
 		}, 
-		tName: {
+		tname: {
 			type: DataTypes.STRING,
 			allowNull: false,
 			validate: {
@@ -15,7 +15,7 @@ module.exports = function(sequelize, DataTypes) {
 				notEmpty: true,
 			}
 		},
-		tPhone: {
+		tphone: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			validate: {
@@ -24,18 +24,18 @@ module.exports = function(sequelize, DataTypes) {
 				len: [10]
 			}
 		},
-		tAddress: {
+		taddress: {
 			type: DataTypes.STRING,
 			allowNull: false,
 		},
-		tEmail: {
+		temail: {
 			type: DataTypes.STRING,
 			allowNull: false,
 			validate: {
 				isEmail: true
 			}
 		},
-		tSubject: {
+		tsubject: {
 			type: DataTypes.STRING,
 			allowNull: false,
 			validate: {

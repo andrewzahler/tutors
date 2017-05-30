@@ -1,20 +1,20 @@
 module.exports = function(sequelize, DataTypes) {
 
 	var Subject = sequelize.define("Subject", {
-		subId: {
+		subid: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			autoIncrement: true,
 			primaryKey: true
 		}, 
-		subName: {
+		subname: {
 			type: DataTypes.STRING,
 			allowNull: false,
 			validate: {
 				isIn: [['English', 'Math', 'Web Development']]
 			}
 		}, 
-		subDescription: {
+		subdescription: {
 			type: DataTypes.STRING,
 			allowNull: false
 		}
