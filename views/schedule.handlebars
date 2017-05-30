@@ -1,0 +1,92 @@
+<header>
+    <nav class="animated slideInDown">
+        <div class="nav-wrapper">
+            <a href="#" class="brand-logo logo">Tutor Finder</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="sass.html">About</a></li>
+                <li><a href="badges.html">Contact</a></li>
+                <!-- <li><a href="collapsible.html">Sign In/Up</a></li> -->
+            </ul>
+        </div>
+    </nav>
+</header>
+<main>
+    <div class="container">
+        <div class="row">
+            <h4 style="text-align: center">Schedule a Tutoring Appointment</h4>
+            <div class="col s6 offset-s3">
+                <div class="row">
+                    <div class="input-field s12">
+                        <label>Select a Date</label>
+                        <input type="date" placeholder="Click to open calendar" class="datepicker">
+                    </div>
+                    <div class="input-field s12">
+                        <select>
+                            <option value="" disabled selected>Choose your option</option>
+                            <option value="1">Option 1</option>
+                            <option value="2">Option 2</option>
+                            <option value="3">Option 3</option>
+                        </select>
+                        <label>Select a Tutor</label>
+                    </div>
+                    <div class="input-field s12">
+                        <select>
+                            <option value="" disabled selected>Choose your option</option>
+                            <option value="1">09:00</option>
+                            <option value="2">10:00</option>
+                            <option value="3">11:00</option>
+                            <option value="4">12:00</option>
+                            <option value="5">13:00</option>
+                            <option value="6">14:00</option>
+                            <option value="7">15:00</option>
+                            <option value="8">16:00</option>
+                            <option value="9">17:00</option>
+                            <option value="10">18:00</option>
+                            <option value="11">19:00</option>
+                            <option value="12">20:00</option>
+                            <option value="13">21:00</option>
+                        </select>
+                        <label>Select a Time Slot</label>
+                    </div>
+                    <div class="col s6 offset-s4">
+                        <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                            <i class="material-icons right">send</i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<footer class="page-footer animated slideInUp">
+    <div class="container">
+        <div class="row">
+            <div class="col l6 s12">
+                <h5 class="white-text">Footer Content</h5>
+                <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+            </div>
+            <div class="col l4 offset-l2 s12">
+                <h5 class="white-text">Links</h5>
+                <ul>
+                    <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+                    <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright">
+        <div class="container">
+            © 2017 Copyright Deloreans
+            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+        </div>
+    </div>
+</footer>
+<script type="text/javascript">
+$(document).ready(function() {
+    $('select').material_select();
+});
+$('.datepicker').pickadate({
+    selectMonths: true, // Creates a dropdown to control month
+    selectYears: 15 // Creates a dropdown of 15 years to control year
+});
+</script>
