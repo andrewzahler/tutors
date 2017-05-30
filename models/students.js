@@ -1,13 +1,13 @@
 module.exports = function(sequelize, DataTypes) {
 
 	var Student = sequelize.define("Student", {
-		sId: {
+		sid: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			autoIncrement: true,
 			primaryKey: true
 		}, 
-		sName: {
+		sname: {
 			type: DataTypes.STRING,
 			allowNull: false,
 			validate: {
@@ -15,20 +15,20 @@ module.exports = function(sequelize, DataTypes) {
 				notEmpty: true,
 			}
 		},
-		sPhone: {
+		sphone: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
 			validate: {
 				isInt: true,
-				// expects phone numbers to be entered with no symbols or spaces, i.e. 2012222552
+				// expects phone numbers to be entered with no symbols, i.e. 2012222552
 				len: [10]
 			}
 		},
-		sAddress: {
+		saddress: {
 			type: DataTypes.STRING,
 			allowNull: false,
 		},
-		sEmail: {
+		semail: {
 			type: DataTypes.STRING,
 			allowNull: false,
 			validate: {
@@ -49,6 +49,5 @@ module.exports = function(sequelize, DataTypes) {
 				}
 			}
 	});
-
 	return Student;
 };
