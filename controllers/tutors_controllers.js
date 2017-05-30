@@ -11,12 +11,14 @@ router.get('/', function(req, res, next){
 });
 //----home page route--------------------//
 
-
 //----login route--------------------//
 router.get('/login:id', function(req, res, next){
   res.render('login', {output: req.params.id});
 });
 //----login route--------------------//
+
+
+
 
 
 
@@ -70,23 +72,23 @@ router.get('/student/:id', function(req, res){
 
 
 
+
+
+
+
+
+
 //----schedule route--------------------//
 router.get('/schedule', function(req, res, next){
   res.render('schedule')
 });
 //----schedule route--------------------//
 
-
-
-
 //----students route--------------------//
 router.get('/students', function(req, res, next){
   res.render('students')
 });
 //----students route--------------------//
-
-
-
 
 //----tutors route--------------------//
 router.get('/tutors', function(req, res, next){
