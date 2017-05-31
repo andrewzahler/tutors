@@ -28,7 +28,37 @@ router.get('/register', function(req, res, next){
  });
 router.post('/register', function(req, res, next){
   var User = {
-    //type:req.body.value,//or would it be the name? req.body.student follwed by req.body.tutor???
+    type:req.body.value,//or would it be the name? req.body.student follwed by req.body.tutor???
+    tid:req.body.id,
+    tname:req.body.tname,
+    tphone:req.body.tphone,
+    taddress:req.body.taddress,
+    temail:req.body.email,
+    tsubject:req.body.subjects
+  };
+
+  console.log(req.body);
+  console.log(req);
+
+  if(req.body.uType == 1){ // student
+    console.log('create student');
+    /*
+     * create the student - if sequelize is succesful:
+     * redirect to student page
+     * else 
+     * redirect to error page
+     */
+    //res.redirect('/student/:id');
+  } else {
+    console.log('create tutor');
+    //res.redirect('/tutor/:id');
+  }
+  console.log('USER: ' + JSON.stringify(User));
+  res.redirect('/');
+});
+router.post('/register', function(req, res, next){
+  var User = {
+    type:req.body.value,//or would it be the name? req.body.student follwed by req.body.tutor???
     tid:req.body.id,
     tname:req.body.tname,
     tphone:req.body.tphone,

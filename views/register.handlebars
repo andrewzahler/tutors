@@ -61,16 +61,23 @@
     <div id="regForm">
       <div class="container">
         <div class="row">        
+
+
           <form action="/register" method="post" class="col s12" name="register">
+
           <div class="row">
+
             <div class="input-field col s12">
-              <select name="uType">
+              <select id="users" name="uType">
                 <option value="0" disabled selected>Choose your Role</option>
                 <option value="1">Student</option>
                 <option value="2">Tutor</option>
               </select>
               <label>Sign up:</label>
             </div>
+
+
+
             <div class="col s12">
               Enter a valid email please:
               <div class="input-field inline">
@@ -78,24 +85,33 @@
                 <label for="email" data-error="wrong" data-success="right">Email</label>
               </div>
             </div>
-          </div>          
+
+
+          {{! </div> }}          
+
           <div class="input-field col s6">
             <input placeholder"DocBrown" id="User_name" name="tname" type="text" class="validate">
             <label for="user_name">User Name</label>
           </div>
+
+
           <div class="row">
             <div class="input-field col s12">
               <input id="password" type="password" name="password" class="validate">
               <label for="password">Password</label>
             </div>
           </div>
+
+
           <div class="col s12">
-            Phone number:
+ Phone number:
             <div class="input-field inline">
               <input id="phone" type="phone" name="tphone" class="validate">
-              <label for="phone" data-error="wrong" data-success="right">555-555-1234</label>
+              <label for="phone" data-error="wrong" data-success="right">{{! 555-555-1234 }}</label>
             </div>
           </div>                
+
+
           <div  class="row">
             <div class="input-field col s12">
               <i class="material-icons prefix"></i>
@@ -103,9 +119,13 @@
               <label for="address">Address</label>
             </div>
           </div>        
-        <!--</div>  -->
-        <div class="input-field col s12">
-          <select id="subjects" multiple="multiple" name="subjects">
+
+
+          {{! </div> }}
+
+
+          <div id="subjects" class="input-field col s12">
+          <select multiple="multiple" name="subjects">
             <option value="" disabled selected>Choose your Subject</option>
             <option value="Math">Math</option>
             <option value="English">English</option>
@@ -113,10 +133,16 @@
           </select>
           <label>Subject</label>
         </div>
-          <button type="submit">Submit</button>
+
+
+        <button type="submit">Submit</button>
+ </div>
           </form>
-      </div>
-      </div>
+          
+      {{! </div> }}
+
+
+    </div>
     </div>
     </div>
     
@@ -158,7 +184,22 @@
     $(document).ready(function() {
     $('select').material_select();
     });  
-    
+
+
+    {{! var users = $(#users); }}
+    {{! console.log(users); }}
+    {{! if (users ===1 ){ }}
+    {{! users.hide(#subjects) }}
+    {{! }; }}
+
+    var Privileges = jQuery('#users');
+    var select = this.value;
+    Privileges.change(function () {
+    if ($(this).val() == '2') {
+    $('#subjects').show();
+    }
+    else $('#subjects').hide(); // hide div if value is not "custom"
+    });
     </script>
   </body>
 </html>
