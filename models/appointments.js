@@ -7,6 +7,11 @@ module.exports = function(sequelize, DataTypes) {
             autoIncrement: true,
             primaryKey: true
         },
+        subject: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            isIn: [["math", "reading", "webDevelopment"]]
+        },
         date: {
             type: DataTypes.DATEONLY,
             allowNull: false,
@@ -32,14 +37,6 @@ module.exports = function(sequelize, DataTypes) {
                 notEmpty: true
             }
         },
-        // rate: {
-        //     type: DataTypes.INTEGER,
-        //     allowNull: false,
-        //     validate: {
-        //         isDecimal: true,
-        //         notEmpty: true
-        //     }
-        // },
         description: {
             type: DataTypes.STRING,
             allowNull: false,
