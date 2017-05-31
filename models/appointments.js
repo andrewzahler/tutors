@@ -21,7 +21,6 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.TIME,
             allowNull: false,
             validate: {
-                isNumeric: true,
                 notEmpty: true
             }
         },
@@ -33,14 +32,14 @@ module.exports = function(sequelize, DataTypes) {
                 notEmpty: true
             }
         },
-        rate: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            validate: {
-                isDecimal: true,
-                notEmpty: true
-            }
-        },
+        // rate: {
+        //     type: DataTypes.INTEGER,
+        //     allowNull: false,
+        //     validate: {
+        //         isDecimal: true,
+        //         notEmpty: true
+        //     }
+        // },
         description: {
             type: DataTypes.STRING,
             allowNull: false,

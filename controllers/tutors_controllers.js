@@ -78,16 +78,8 @@ router.get('/schedule', function(req, res, next) {
 
 // API post route to create a new appointment
 router.post('/api/appointments', function(req, res, next) { // what does the 'next' argument do?
-    db.Appointment.create({
-    	date: req.body.date,
-    	time: req.body.time,
-    	hours: req.body.hours,
-    	description: req.body.description,
-    	// sequelize throws error both when I try to set value of below columns manually or with req.body.name
-    	// TutorTid: 1,
-    	// StudentSid: 1,
-    	// SubjectSubid: 1
-    }).then(function(dbAppointment) {
+    db.Appointment.create(req.body).then(function(dbAppointment) {
+    	// sequelize throws error saying I can't add a foreign key value if I try to supply one
         res.json(dbAppointment);
         // res.render("/");
     });
