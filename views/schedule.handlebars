@@ -13,8 +13,9 @@
 <main>
     <div class="container">
         <div class="row">
-            <h4 style="text-align: center">Schedule a Tutoring Appointment</h4>
-            <div class="col s6 offset-s3">
+            <div class="col s6 offset-s3 appt-form">
+            <h4>Schedule a Tutoring Appointment</h4>
+            
                 <div class="row">
                     <form action="/api/appointments" method="post" class="col s12" name="appointment">
                      <div class="input-field s12">
@@ -29,9 +30,9 @@
                     <div class="input-field s12">
                         <select name="tutor">
                             <option value="" disabled selected>Choose your option</option>
-                            <option value="1" name="Option 1">Option 1</option>
-                            <option value="2" name="Option 2">Option 2</option>
-                            <option value="3" name="Option 3">Option 3</option>
+                            {{#each tutors}}
+                            <option value="{{this.TutorId}}" name="this.name">{{this.name}}</option>
+                            {{/each}}
                         </select>
                         <label>Select a Tutor</label>
                     </div>
@@ -42,6 +43,7 @@
                     <div class="input-field s12">
                         <select name="time">
                             <option value="" disabled selected>Choose your option</option>
+                            {{!-- Want to only show the available times for this date, but how? --}}
                             <option value="09:00">09:00</option>
                             <option value="10:00">10:00</option>
                             <option value="11:00">11:00</option>
@@ -58,7 +60,8 @@
                         </select>
                         <label>Select a Time Slot</label>
                     </div>
-                     <div class="input-field s12">
+                    {{!-- can add this layer of options once MVP working --}}
+                    {{!-- <div class="input-field s12">
                         <select name="hours">
                             <option value="" disabled selected>Choose your option</option>
                             <option value="1" name="oneHour">One hour</option>
@@ -66,7 +69,7 @@
                             <option value="3" name="threeHours">Three hours</option>
                         </select>
                         <label>How Long?</label>
-                    </div>
+                    </div> --}}
                     <div class="input-field s12">
                         <textarea id="description" name="description" type: "textarea" class="materialize-textarea"></textarea>
                         <label for="description">Please tell us what you'd like to focus on during your appointment.</label>
@@ -112,6 +115,6 @@ $(document).ready(function() {
 $('.datepicker').pickadate({
     selectMonths: true, // Creates a dropdown to control month
     selectYears: 15, // Creates a dropdown of 15 years to control year
-    format: "yyyy-mm-dd"
+    format: "yyyy-mm-dd" // Specifies format of date to work with Sequelize validate method
 });
 </script>

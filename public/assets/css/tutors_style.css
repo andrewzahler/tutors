@@ -15,6 +15,11 @@ main {
 nav, footer{
 	font-family: 'Acme', sans-serif;
 }
+
+h4 {
+	text-align: center;
+}
+
 .logo {
     margin-left: 10px;
     /*font-family: 'Handlee', cursive;*/
@@ -67,6 +72,12 @@ nav, footer{
 
 .subject-row, .totur-row{
 	margin-top: 15px;
+}
+
+.appt-form {
+	background-color: #ffebee;
+	margin-top: 25px;
+	padding: 15px;
 }
 /*
 h1.super-header {

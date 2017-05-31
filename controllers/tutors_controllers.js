@@ -16,6 +16,8 @@ router.get('/', function(req, res, next) {
 router.get('/login', function(req, res, next) {
     res.render('login', { output: req.params.id });
 });
+
+
 //----login route--------------------//
 
 
@@ -72,14 +74,14 @@ router.get('/student/:id', function(req, res) {
 
 //----schedule route--------------------//
 // HTML route to render scheduling page
-router.get('/schedule', function(req, res, next) {
-    res.render('schedule');
+router.get("/schedule", function(req, res, next) {
+    res.render("schedule");
 });
 
 // API post route to create a new appointment
-router.post('/api/appointments', function(req, res, next) { // what does the 'next' argument do?
+router.post("/api/appointments", function(req, res, next) { // what does the 'next' argument do?
     db.Appointment.create(req.body).then(function(dbAppointment) {
-    	// sequelize throws error saying I can't add a foreign key value if I try to supply one
+        // sequelize throws error saying I can't add a foreign key value if I try to supply one
         res.json(dbAppointment);
         // res.render("/");
     });
@@ -91,7 +93,7 @@ router.post('/api/appointments', function(req, res, next) { // what does the 'ne
 // API get route to find all appointments with left outer join including three models
 router.get("/api/appointments", function(req, res) {
     db.Appointment.findAll({
-        include: [db.Subject, db.Student, db.Tutor]
+        include: [db.Student, db.Tutor]
     }).then(function(dbAppointment) {
         res.json(dbAppointment);
     });
@@ -103,23 +105,55 @@ router.get("/api/appointments/:id", function(req, res) {
         where: {
             id: req.params.id
         },
-        include: [db.Subject, db.Student, db.Tutor]
+        include: [db.Student, db.Tutor]
     }).then(function(dbAppointment) {
         res.json(dbAppointment);
     });
 });
 
-// API put route for updating appointments
-router.put("/api/appointments", function(req, res) {
-    db.Appointment.update(
-        req.body, {
-            where: {
-                id: req.body.id
-            }
-        }).then(function(dbAppointment) {
-        res.json(dbAppointment);
+// API Get route for retrieving all tutors for given subject to populate dropdown on scheduling page
+router.get("/api/appointments/tutors/:subject", function(req, res, next) {
+    db.Tutor.findAll({
+        where: {
+            subject: req.params.subject
+        },
+    }).then(function(dbSubjectTutors) {
+        var hbsObject = {
+            tutors: dbSubjectTutors
+        };
+        res.render("schedule", hbsObject);
     });
 });
+
+// API Get route for retrieving all appointments for given tutor to populate calendar on scheduling page
+router.get("/api/appointments/:TutorId/:date", function(req, res, next) {
+    db.Appointment.findAll({
+        where: {
+            TutorId: req.params.TutorId,
+            date: req.params.date
+        },
+    }).then(function(dbTutorAppts) {
+        var hbsObject = {
+            appointments: dbTutorAppts
+        };
+        console.log(hbsObject);
+        res.render("schedule", hbsObject);
+    });
+});
+
+
+
+// API put route for updating appointments; to implement after MVP is done
+// router.put("/api/appointments", function(req, res) {
+//     db.Appointment.update(
+//         req.body, {
+//             where: {
+//                 id: req.body.id
+//             }
+//         }).then(function(dbAppointment) {
+//         res.json(dbAppointment);
+//     });
+// });
 
 //----schedule route--------------------//
 
@@ -139,6 +173,9 @@ router.get('/students', function(req, res, next) {
 router.get('/tutors', function(req, res, next) {
     res.render('tutors');
 });
+
+
+
 //----tutors route--------------------//
 
 
