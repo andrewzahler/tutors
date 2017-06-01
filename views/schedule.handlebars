@@ -15,23 +15,23 @@
         <div class="row">
             <div class="col s6 offset-s3 appt-form">
             <h4>Schedule a Tutoring Appointment</h4>
-            
                 <div class="row">
                     <form action="/api/appointments" method="post" class="col s12" name="appointment">
                      <div class="input-field s12">
                         <select name="subject">
                             <option value="" disabled selected>Choose your option</option>
                             <option value="1" name="math">Math</option>
-                            <option value="2" name="reading">Reading</option>
+                            <option value="2" name="reading">English</option>
                             <option value="3" name="webDevelopment">Web Development</option>
                         </select>
                         <label>Select a Subject</label>
                     </div>
+                    {{#if appointments.subject}}
                     <div class="input-field s12">
                         <select name="tutor">
                             <option value="" disabled selected>Choose your option</option>
                             {{#each tutors}}
-                            <option value="{{this.TutorId}}" name="this.name">{{this.name}}</option>
+                                <option value="{{this.TutorId}}" name="{{this.name}}">{{this.name}}</option>
                             {{/each}}
                         </select>
                         <label>Select a Tutor</label>
@@ -79,6 +79,7 @@
                             <i class="material-icons right">send</i>
                         </button>
                     </div>
+                    {{/if}}
                     </form>
                 </div>
             </div>
@@ -115,6 +116,6 @@ $(document).ready(function() {
 $('.datepicker').pickadate({
     selectMonths: true, // Creates a dropdown to control month
     selectYears: 15, // Creates a dropdown of 15 years to control year
-    format: "yyyy-mm-dd" // Specifies format of date to work with Sequelize validate method
+    format: "yyyymmdd" // Specifies format of date to work with Sequelize validate method
 });
 </script>
