@@ -23,7 +23,14 @@ router.get('/register', function(req, res, next) {
     res.render('register');
 });
 router.post('/register', function(req, res, next) {
-    var user = {
+
+    db.Tutor.create(req.body).then(function(dbTutor) {
+                                          // sequelize throws error saying I can't add a foreign key value if I try to supply one
+        res.json(dbTutor);
+        // res.render("/");
+    });
+    console.log(req.body);
+  var user = {
         type:req.body.value,
         id: req.body.id,
         name: req.body.tname,
@@ -50,21 +57,20 @@ router.post('/register', function(req, res, next) {
          res.redirect('/tutor/:id');
      }
     console.log('USER: ' + JSON.stringify(user));
-    res.redirect('/tutors');
+    res.redirect('/');
 });
-
 
 
 router.get('/tutor/:id', function(req, res) {
     /* get tutor with id */
     var user = orm.getTutor(id);
-    res.render('user.handlebars', { istutor: true, user: user });
+  res.render('user.handlebars', { istutor: true, user: user });
 });
 
 router.get('/student/:id', function(req, res) {
     /* get tutor with id */
     var user = orm.getStudent(id);
-    res.render('user.handlebars', { istutor: false, user: user });
+  res.render('user.handlebars', { istutor: false, user: user });
 });
 //----register routes--------------------//
 

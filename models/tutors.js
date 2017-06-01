@@ -53,7 +53,7 @@ module.exports = function(sequelize, DataTypes) {
           Tutor.hasMany(models.Appointment, {
             onDelete: "cascade"
             });
-          },
+          }
         }
       });
   return Tutor;
