@@ -29,6 +29,7 @@ router.get('/register', function(req, res, next) {
 });
 
 router.post('/register', passport.authenticate('local-signup', {
+    successRedirect: '/student',
     failureRedirect: '/register'
 }));
 

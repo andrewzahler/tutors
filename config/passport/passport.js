@@ -5,6 +5,8 @@ var models = require("../../models");
 module.exports = function(passport, user) {
 
     var User = models.User;
+    var Student = models.Student;
+    var Tutor = models.Tutor;
     var LocalStrategy = require('passport-local').Strategy;
 
     //serialize user
@@ -50,44 +52,46 @@ module.exports = function(passport, user) {
                     var authData = {
                         username: initialData.body.username,
                         password: userPassword,
-                        email: email
+                        email: email,
+                        type: initialData.body.uType
                     };
                     // user creation
                     User.create(authData).then(function(newUser, created) {
                         console.log("creating the user", authData);
                         if (!newUser) {
-                            return done(null, false, req, res);
+                            return done(null, false);
                         }
                         if (newUser) {
+                            console.log(newUser);
                             var secondaryData = {
-                                type: req.body.value,
-                                id: req.body.id,
                                 name: req.body.name,
                                 phone: req.body.phone,
                                 address: req.body.address,
-                                email: req.body.email,
-                                subject: req.body.subjects
+                                email: req.body.email                                
                             };
                             // checks to see if new user is tutor or student
                             if (req.body.uType == 1) {
+                                secondaryData.UserId = newUser.dataValues.id;
                                 console.log('create student', secondaryData);
                                 // creates student
-                                models.Student.create(secondaryData).then(function(req, res) {
+                                Student.create(secondaryData).then(function(req, res) {
                                     console.log("new student body here", req.body);
-                                    return done(null, newUser, req, res);
-                                    // res.redirect('/student');                                 
+                                    return done(null, newUser);
+                                    // res.redirect('/student');
                                 });
 
                             } else {
-                                console.log('create tutor');
                                 // creates tutor
-                                models.Tutor.create(secondaryData).then(function(req, res) {
+                                secondaryData.subjects = req.body.subjects;
+                                secondaryData.UserId = newUser.dataValues.id;
+                                console.log('create tutor', secondaryData);
+                                Tutor.create(secondaryData).then(function(req, res) {
                                     console.log("new tutor body here", req.body);
-                                    return done(null, newUser, req, res);
-                                    // res.redirect('/tutor'); 
+                                    return done(null, newUser);
+                                    // res.redirect('/tutor');
                                 });
                             }
-                            console.log('USER: ' + JSON.stringify(user));
+
                             // return done(null, newUser);
                         }
                     });

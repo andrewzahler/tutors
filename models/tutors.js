@@ -1,25 +1,23 @@
 module.exports = function(sequelize, DataTypes) {
     var Tutor = sequelize.define("Tutor", {
 
-        id: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            autoIncrement: true,
-            primaryKey: true
-        },
+        // id: {
+        //     type: DataTypes.INTEGER,
+        //     allowNull: false,
+        //     autoIncrement: true,
+        //     primaryKey: true
+        // },
         name: {
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
-                is: ["^[a-z]+$", 'i'],
-                notEmpty: true,
+                is: ["^[a-z]+$", 'i']
             }
         },
         phone: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING,
             allowNull: false,
             validate: {
-                isInt: true,
                 // expects phone numbers to be entered with no symbols, i.e. 2012222552
                 len: [10]
             }
@@ -36,8 +34,8 @@ module.exports = function(sequelize, DataTypes) {
             }
         },
         subjects: {
-            type: DataTypes.ENUM("english", "math", "webDevelopment"),
-            allowNull: false,
+            type: DataTypes.STRING,
+            allowNull: false
         }
     }, {
         classMethods: {

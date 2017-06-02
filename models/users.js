@@ -20,6 +20,10 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.STRING,
             isEmail: true
         },
+        type: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        }
 
     }, {
         classMethods: {
