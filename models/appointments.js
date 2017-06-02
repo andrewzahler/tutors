@@ -66,4 +66,25 @@ module.exports = function(sequelize, DataTypes) {
         }
     });
     return Appointment;
+<<<<<<< HEAD
 };
+
+
+
+
+
+
+
+
+
+
+// module.exports = function(sequelize, DataTypes) {
+
+// 	var Appointment = sequelize.define("Appointment", {
+// 			// Uh oh. What comes next?
+// 	});
+// 	return Appointment;
+// };
+=======
+};
+>>>>>>> f4ba68dfaf4e37b2a5b8e3154a1c234c77a149ba

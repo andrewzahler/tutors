@@ -2,7 +2,6 @@ var express = require("express");
 var passport = require("passport");
 
 var router = express.Router();
-
 var db = require("../models");
 
 
@@ -24,6 +23,63 @@ router.get('/login', function(req, res) {
     res.render('login');
 });
 
+router.get('/register', function(req, res, next) {
+    res.render('register');
+});
+router.post('/register', function(req, res, next) {
+    console.log("username here", req.body);
+    db.User.create(req.body).then(function(dbUser) {
+        console.log("creating the user", user);
+        var user = {
+            type: req.body.value,
+            id: req.body.id,
+            name: req.body.name,
+            phone: req.body.phone,
+            address: req.body.address,
+            email: req.body.email,
+            subject: req.body.subjects
+        };
+
+        if (req.body.uType == 1) {
+            console.log('create student');
+            db.Student.create(user).then(function(req, res, next) {
+                console.log("new student body here", req.body);
+                res.redirect('/student/');
+            });
+            //     /*
+            //      *          * create the student - if sequelize is succesful:
+            //      *          * redirect to student page
+            //      *          * else 
+            //      *          * redirect to error page
+            //      *          */
+
+        } else {
+            console.log('create tutor');
+            db.Tutor.create(user).then(function(req, res, next) {
+                res.redirect('/tutor/');
+            });
+        }
+        console.log('USER: ' + JSON.stringify(user));
+        //    res.redirect('/');
+    });
+
+});
+// router.get('/tutor/:id', function(req, res) {
+//     /* get tutor with id  from database find()*/
+// //    var user = orm.getTutor(id);
+
+
+//   res.render('tutors', {  });
+// });
+
+// router.get('/student/:id', function(req, res) {
+//     /* get tutor with id */
+//  //   var user = orm.getStudent(id);
+//   res.render('user.handlebars', {  });
+// });
+// ----register routes--------------------//
+
+
 router.post('/register', passport.authenticate('local-signup', {
     successRedirect: '/',
     failureRedirect: '/register'
@@ -35,55 +91,13 @@ router.get('/logout', function(req, res) {
     });
 });
 
+
 router.post('/login', passport.authenticate('local-signin', {
-        successRedirect: '/schedule',
-        failureRedirect: '/login' }
-));
+    successRedirect: '/schedule',
+    failureRedirect: '/login'
+}));
 
 
-
-// router.post('/register', function(req, res, next) {
-//     var user = {
-//         //type:req.body.value,//or would it be the name? req.body.student follwed by req.body.tutor???
-//         tid: req.body.id,
-//         tname: req.body.tname,
-//         tphone: req.body.tphone,
-//         taddress: req.body.taddress,
-//         temail: req.body.email,
-//         tsubject: req.body.subjects
-//     };
-
-//     console.log(req.body);
-//     console.log(req);
-
-//     if (req.body.uType == 1) { // student
-//         console.log('create student');
-
-//          * create the student - if sequelize is succesful:
-//          * redirect to student pagecd
-//          * else 
-//          * redirect to error page
-
-//         //res.redirect('/student/:id');
-//     } else {
-//         console.log('create tutor');
-//         //res.redirect('/tutor/:id');
-//     }
-//     console.log('USER: ' + JSON.stringify(User));
-//     res.redirect('/');
-// });
-
-// router.get('/tutor/:id', function(req, res) {
-//     /* get tutor with id */
-//     var user = orm.getTutor(id);
-//     res.render('user.handlebars', { istutor: true, user: user });
-// });
-
-// router.get('/student/:id', function(req, res) {
-//     /* get tutor with id */
-//     var user = orm.getStudent(id);
-//     res.render('user.handlebars', { istutor: false, user: user });
-// });
 //----login and register routes--------------------//
 
 
@@ -97,7 +111,7 @@ router.get("/schedule", isLoggedIn, function(req, res) {
 // API post route to create a new appointment
 router.post("/api/appointments", function(req, res) { // what does the' argument do?
     db.Appointment.create(req.body).then(function(dbAppointment) {
-        // sequelize throws error saying I can't add a foreign key value if I try to supply one
+
         res.json(dbAppointment);
         // res.render("/");
     });
@@ -138,8 +152,9 @@ router.get('/students', function(req, res) {
 
 
 //----tutors route--------------------//
-router.get('/tutors', function(req, res) {
-    res.render('tutors');
+
+router.get('/tutors', function(req, res, next) {
+    res.render('tutors', req.body);
 });
 
 // API Get route for retrieving all tutors for given subject to populate dropdown on scheduling page

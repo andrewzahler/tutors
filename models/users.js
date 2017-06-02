@@ -1,3 +1,4 @@
+
 module.exports = function(sequelize, DataTypes) {
 
     var User = sequelize.define("User", {
@@ -23,12 +24,13 @@ module.exports = function(sequelize, DataTypes) {
     }, {
         classMethods: {
             associate: function(models) {
-                User.belongsTo(models.Tutor, {
+                User.hasOne(models.Tutor, {
                     foreignKey: {
                         allowNull: false
                     }
                 });
-                User.belongsTo(models.Student, {
+
+                User.hasOne(models.Student, {
                     foreignKey: {
                         allowNull: false
                     }
