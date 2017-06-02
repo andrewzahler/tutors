@@ -1,5 +1,3 @@
-//** THIS MODEL NEEDS SOME WORK OBVIOUSLY. NOT QUITE SURE HOW TO HANDLE THE ASSOCIATIONS AND DUAL PRIMARY KEYS **// 
-
 module.exports = function(sequelize, DataTypes) {
 
     var Appointment = sequelize.define("Appointment", {
@@ -67,6 +65,7 @@ module.exports = function(sequelize, DataTypes) {
         }
     });
     return Appointment;
+<<<<<<< HEAD
 };
 
 
@@ -85,3 +84,6 @@ module.exports = function(sequelize, DataTypes) {
 // 	});
 // 	return Appointment;
 // };
+=======
+};
+>>>>>>> f4ba68dfaf4e37b2a5b8e3154a1c234c77a149ba
