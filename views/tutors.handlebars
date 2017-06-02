@@ -1,13 +1,3 @@
-<html>
-  <head>
-    <title></title>
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
     <style type="text/css">
     body {
     display: flex;
@@ -82,7 +72,7 @@
               <div class="col s3">
                 <div>
                   {{#each user}}
-                    {{user.id}}
+                    {{user.username}}
                     {{this.email}}
                   {{/each}}
                 </div>
@@ -91,7 +81,7 @@
               <div class="col s3">
                 <div>
                   {{#each item}}
-                    {{user.id}}
+                    {{user.phone}}
                     {{this.email}}
                   {{/each}}
                 </div>

@@ -36,29 +36,25 @@ module.exports = function(sequelize, DataTypes) {
         }
       },
     subjects: {
-      type: DataTypes.STRING,
+      type: DataTypes.ENUM("english","math","webDevelopment"),
       allowNull: false,
-      validate: {
-        isIn: [['English', 'Math', 'Web Development']]
-        }
-      }
-    }, {
-      classMethods: {
+    }
+  }, {
+    classMethods: {
         associate: function(models) {
           Tutor.belongsTo(models.User, {
             foreignKey: {
               allowNull: false
-              }
-            });
+            }
+          });
           Tutor.hasMany(models.Appointment, {
             onDelete: "cascade"
-            });
-          }
+          });
         }
-      });
+    }
+  });
   return Tutor;
 };
-
 
 
 

@@ -20,59 +20,60 @@ router.get('/login', function(req, res, next) {
 
 //----register routes--------------------//
 router.get('/register', function(req, res, next) {
-    res.render('register');
+  res.render('register');
 });
 router.post('/register', function(req, res, next) {
-
-    db.Tutor.create(req.body).then(function(dbTutor) {
-                                          // sequelize throws error saying I can't add a foreign key value if I try to supply one
-        res.json(dbTutor);
-        // res.render("/");
-    });
-    console.log(req.body);
-  var user = {
-        type:req.body.value,
-        id: req.body.id,
-        name: req.body.tname,
-        phone: req.body.tphone,
-        address: req.body.taddress,
-        email: req.body.email,
-        subject: req.body.subjects
+    console.log("username here", req.body)
+  db.User.create(req.body).then(function(dbUser) {
+    console.log("creating the user", user)
+    var user = {
+      type:req.body.value,
+      id: req.body.id,
+      name: req.body.name,
+      phone: req.body.phone,
+      address: req.body.address,
+      email: req.body.email,
+      subject: req.body.subjects
     };
 
-    console.log(req.body);
-  //  console.log(req);
+    if (req.body.uType == 1) {
+      console.log('create student');
+      db.Student.create(user).then(function(req,res,next){
+        console.log("new student body here", req.body);
+              res.redirect('/student/');
+      });                            
+      //     /*
+      //      *          * create the student - if sequelize is succesful:
+      //      *          * redirect to student page
+      //      *          * else 
+      //      *          * redirect to error page
+      //      *          */
 
-     if (req.body.uType == 1) { // student
-         console.log('create student');
-    //     /*
-    //      *          * create the student - if sequelize is succesful:
-    //      *          * redirect to student pagecd
-    //      *          * else 
-    //      *          * redirect to error page
-    //      *          */
-         res.redirect('/student/:id');
-     } else {
-        console.log('create tutor');
-         res.redirect('/tutor/:id');
-     }
+    } else {
+      console.log('create tutor');
+      db.Tutor.create(user).then(function(req,res,next){
+         res.redirect('/tutor/');
+      });                            
+    }
     console.log('USER: ' + JSON.stringify(user));
-    res.redirect('/');
+//    res.redirect('/');
+  });
+  
 });
+// router.get('/tutor/:id', function(req, res) {
+//     /* get tutor with id  from database find()*/
+// //    var user = orm.getTutor(id);
 
 
-router.get('/tutor/:id', function(req, res) {
-    /* get tutor with id */
-    var user = orm.getTutor(id);
-  res.render('user.handlebars', { istutor: true, user: user });
-});
+//   res.render('tutors', {  });
+// });
 
-router.get('/student/:id', function(req, res) {
-    /* get tutor with id */
-    var user = orm.getStudent(id);
-  res.render('user.handlebars', { istutor: false, user: user });
-});
-//----register routes--------------------//
+// router.get('/student/:id', function(req, res) {
+//     /* get tutor with id */
+//  //   var user = orm.getStudent(id);
+//   res.render('user.handlebars', {  });
+// });
+// ----register routes--------------------//
 
 
 
