@@ -3,6 +3,7 @@ var passport = require("passport");
 
 var router = express.Router();
 var db = require("../models");
+var passData = require("../config/passport/passport.js");
 
 
 //----home page route--------------------//
@@ -26,44 +27,47 @@ router.get('/login', function(req, res) {
 router.get('/register', function(req, res, next) {
     res.render('register');
 });
-router.post('/register', function(req, res, next) {
-    console.log("username here", req.body);
-    db.User.create(req.body).then(function(dbUser) {
-        console.log("creating the user", user);
-        var user = {
-            type: req.body.value,
-            id: req.body.id,
-            name: req.body.name,
-            phone: req.body.phone,
-            address: req.body.address,
-            email: req.body.email,
-            subject: req.body.subjects
-        };
 
-        if (req.body.uType == 1) {
-            console.log('create student');
-            db.Student.create(user).then(function(req, res, next) {
-                console.log("new student body here", req.body);
-                res.redirect('/student/');
-            });
-            //     /*
-            //      *          * create the student - if sequelize is succesful:
-            //      *          * redirect to student page
-            //      *          * else 
-            //      *          * redirect to error page
-            //      *          */
+router.post('/register', passport.authenticate('local-signup', {
+    failureRedirect: '/register'
+}));
 
-        } else {
-            console.log('create tutor');
-            db.Tutor.create(user).then(function(req, res, next) {
-                res.redirect('/tutor/');
-            });
-        }
-        console.log('USER: ' + JSON.stringify(user));
-        //    res.redirect('/');
-    });
+//** ROUTE REPLACED BY ABOVE; REMAINDER OF THIS FUNCTION MOVED TO PASSPORT.JS **//
+// router.post('/register', function(req, res, next) {
+//     console.log(req.body);
+    // 
+    // db.User.create(req.body).then(function(dbUser) {
+    //     console.log("creating the user", user);
+    //     var user = {
+    //         type: req.body.value,
+    //         id: req.body.id,
+    //         name: req.body.name,
+    //         phone: req.body.phone,
+    //         address: req.body.address,
+    //         email: req.body.email,
+    //         subject: req.body.subjects
+    //     };
 
-});
+    //     if (req.body.uType == 1) {
+    //         console.log('create student');
+    //         db.Student.create(user).then(function(req, res, next) {
+    //             console.log("new student body here", req.body);
+    //             res.redirect('/student');
+    //         });
+
+    //     } else {
+    //         console.log('create tutor');
+    //         db.Tutor.create(user).then(function(req, res, next) {
+    //             res.redirect('/tutor');
+    //         });
+    //     }
+    //     console.log('USER: ' + JSON.stringify(user));
+    //     //    res.redirect('/');
+    // });
+
+// });
+
+
 // router.get('/tutor/:id', function(req, res) {
 //     /* get tutor with id  from database find()*/
 // //    var user = orm.getTutor(id);
@@ -78,12 +82,6 @@ router.post('/register', function(req, res, next) {
 //   res.render('user.handlebars', {  });
 // });
 // ----register routes--------------------//
-
-
-router.post('/register', passport.authenticate('local-signup', {
-    successRedirect: '/',
-    failureRedirect: '/register'
-}));
 
 router.get('/logout', function(req, res) {
     req.session.destroy(function(err) {
