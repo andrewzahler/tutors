@@ -1,21 +1,41 @@
+
 module.exports = function(sequelize, DataTypes) {
 
-	var User = sequelize.define("User", {
-		uid: {
-			type: DataTypes.INTEGER,
-			allowNull: false,
-			autoIncrement: true,
-			primaryKey: true
-		},
-		password: {
-			type: DataTypes.STRING,
-			allowNull: false
-		}, 
-		email: {
-			type: DataTypes.STRING,
-			isEmail: true
-		},
+    var User = sequelize.define("User", {
+        id: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            autoIncrement: true,
+            primaryKey: true
+        },
+        username: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        password: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
+        email: {
+            type: DataTypes.STRING,
+            isEmail: true
+        },
 
-	});
-	return User;
+    }, {
+        classMethods: {
+            associate: function(models) {
+                User.hasOne(models.Tutor, {
+                    foreignKey: {
+                        allowNull: false
+                    }
+                });
+                User.hasOne(models.Student, {
+                    foreignKey: {
+                        allowNull: false
+                    }
+                });
+            },
+        }
+    });
+    return User;
 };

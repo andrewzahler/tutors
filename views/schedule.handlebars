@@ -1,4 +1,120 @@
 <header>
+<<<<<<< HEAD
+  <nav class="animated slideInDown">
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo logo">Tutor Finder</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="sass.html">About</a></li>
+        <li><a href="badges.html">Contact</a></li>
+        <!-- <li><a href="collapsible.html">Sign In/Up</a></li> -->
+      </ul>
+    </div>
+  </nav>
+</header>
+<main>
+<div class="container">
+  <div class="row">
+    <h4 style="text-align: center">Schedule a Tutoring Appointment</h4>
+    <div class="col s6 offset-s3">
+      <div class="row">
+        <form action="/api/appointments" method="post" class="col s12" name="appointment">
+        <div class="input-field s12">
+          <select name="subject">
+            <option value="" disabled selected>Choose your option</option>
+            <option value="1" name="math">Math</option>
+            <option value="2" name="reading">Reading</option>
+            <option value="3" name="webDevelopment">Web Development</option>
+          </select>
+          <label>Select a Subject</label>
+        </div>
+        <div class="input-field s12">
+          <select name="tutor">
+            <option value="" disabled selected>Choose your option</option>
+            <option value="1" name="Option 1">Option 1</option>
+            <option value="2" name="Option 2">Option 2</option>
+            <option value="3" name="Option 3">Option 3</option>
+          </select>
+          <label>Select a Tutor</label>
+        </div>
+        <div class="input-field s12">
+          <label>Select a Date</label>
+          <input name="date" type="date" placeholder="Click to open calendar" class="datepicker">
+        </div>
+        <div class="input-field s12">
+          <select name="time">
+            <option value="" disabled selected>Choose your option</option>
+            <option value="09:00">09:00</option>
+            <option value="10:00">10:00</option>
+            <option value="11:00">11:00</option>
+            <option value="12:00">12:00</option>
+            <option value="13:00">13:00</option>
+            <option value="14:00">14:00</option>
+            <option value="15:00">15:00</option>
+            <option value="16:00">16:00</option>
+            <option value="17:00">17:00</option>
+            <option value="18:00">18:00</option>
+            <option value="19:00">19:00</option>
+            <option value="20:00">20:00</option>
+            <option value="21:00">21:00</option>
+          </select>
+          <label>Select a Time Slot</label>
+        </div>
+        <div class="input-field s12">
+          <select name="hours">
+            <option value="" disabled selected>Choose your option</option>
+            <option value="1" name="oneHour">One hour</option>
+            <option value="2" name="twoHours">Two hours</option>
+            <option value="3" name="threeHours">Three hours</option>
+          </select>
+          <label>How Long?</label>
+        </div>
+        <div class="input-field s12">
+          <textarea id="description" name="description" type: "textarea" class="materialize-textarea"></textarea>
+          <label for="description">Please tell us what you'd like to focus on during your appointment.</label>
+        </div>
+        <div class="col s6 offset-s4">
+          <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+            <i class="material-icons right">send</i>
+          </button>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</main>
+<footer class="page-footer animated slideInUp">
+  <div class="container">
+    <div class="row">
+      <div class="col l6 s12">
+        <h5 class="white-text">Footer Content</h5>
+        <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+      </div>
+      <div class="col l4 offset-l2 s12">
+        <h5 class="white-text">Links</h5>
+        <ul>
+          <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+          <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-copyright">
+    <div class="container">
+      © 2017 Copyright Deloreans
+      <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+    </div>
+  </div>
+</footer>
+<script type="text/javascript">
+$(document).ready(function() {
+$('select').material_select();
+});
+$('.datepicker').pickadate({
+selectMonths: true, // Creates a dropdown to control month
+selectYears: 15, // Creates a dropdown of 15 years to control year
+format: "yyyy-mm-dd"
+=======
     <nav class="animated slideInDown">
         <div class="nav-wrapper">
             <a href="#" class="brand-logo logo">Tutor Finder</a>
@@ -113,5 +229,6 @@ $('.datepicker').pickadate({
     selectMonths: true, // Creates a dropdown to control month
     selectYears: 15, // Creates a dropdown of 15 years to control year
     format: "yyyy-mm-dd"
+>>>>>>> f4ba68dfaf4e37b2a5b8e3154a1c234c77a149ba
 });
 </script>
