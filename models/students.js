@@ -38,7 +38,7 @@ module.exports = function(sequelize, DataTypes) {
 	}, {
 			classMethods: {
 				associate: function(models) {
-					Student.belongsTo(models.User, {
+					Student.hasOne(models.User, {
 						foreignKey: {
 							allowNull: false
 						}

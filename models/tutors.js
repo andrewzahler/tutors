@@ -38,14 +38,11 @@ module.exports = function(sequelize, DataTypes) {
 		subjects: {
 			type: DataTypes.STRING,
 			allowNull: false,
-			validate: {
-				isIn: [['English', 'Math', 'Web Development']]
-			}
-		} 
+			} 
 	}, {
 			classMethods: {
 				associate: function(models) {
-					Tutor.belongsTo(models.User, {
+					Tutor.hasOne(models.User, {
 						foreignKey: {
 							allowNull: false
 						}

@@ -25,7 +25,6 @@ router.get('/login', function(req, res) {
 });
 
 router.post('/register', passport.authenticate('local-signup', {
-
     successRedirect: '/',
     failureRedirect: '/register'
 }));
