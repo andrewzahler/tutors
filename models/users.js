@@ -6,11 +6,13 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.INTEGER,
             allowNull: false,
             autoIncrement: true,
-            primaryKey: true
+            primaryKey: true,
+          msg:"User.Student error with foreign key"
         },
         username: {
             type: DataTypes.STRING,
             allowNull: false,
+          msg:"User.Student error with foreign key"
         },
         password: {
             type: DataTypes.STRING,
@@ -19,23 +21,30 @@ module.exports = function(sequelize, DataTypes) {
         email: {
             type: DataTypes.STRING,
             isEmail: true
-        },
+        }
 
     }, {
         classMethods: {
             associate: function(models) {
-                User.hasOne(models.Tutor, {
+                User.hasMany(models.Tutor, {
                     foreignKey: {
-                        allowNull: false
+                      allowNull: false,
+                      msg:"User.Tutor error with foreign key"
                     }
                 });
                 User.hasOne(models.Student, {
                     foreignKey: {
-                        allowNull: false
+                      allowNull: false,
+                      msg:"User.Student error with foreign key"
                     }
                 });
-            },
+            }
         }
     });
     return User;
 };
+
+
+
+
+

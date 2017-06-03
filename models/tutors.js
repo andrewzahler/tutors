@@ -13,7 +13,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       validate: {
         is: ["^[a-z]+$",'i'],
-        notEmpty: true,
+        notEmpty: true
         }
       },
     phone: {
@@ -27,7 +27,7 @@ module.exports = function(sequelize, DataTypes) {
       },
     address: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
       },
     email: {
       type: DataTypes.STRING,
@@ -38,7 +38,7 @@ module.exports = function(sequelize, DataTypes) {
       },
     subjects: {
       type: DataTypes.ENUM("english","math","webDevelopment"),
-      allowNull: false,
+      allowNull: false
     }
   }, {
     classMethods: {
