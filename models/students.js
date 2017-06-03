@@ -1,12 +1,13 @@
 module.exports = function(sequelize, DataTypes) {
 
+
   var Student = sequelize.define("Student", {
-    // id: {
-    //   type: DataTypes.INTEGER,
-    //   allowNull: false,
-    //   autoIncrement: true,
-    //   primaryKey: true
-    //   },
+    id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true
+      },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -32,10 +33,6 @@ module.exports = function(sequelize, DataTypes) {
       validate: {
         isEmail: true
         }
-      },
-      subjects: {
-        type: DataTypes.STRING,
-        allowNull: true
       }
     }, {
       classMethods: {

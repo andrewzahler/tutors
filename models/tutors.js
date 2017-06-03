@@ -1,6 +1,7 @@
 module.exports = function(sequelize, DataTypes) {
     var Tutor = sequelize.define("Tutor", {
 
+
         id: {
             type: DataTypes.INTEGER,
             allowNull: false,
@@ -52,4 +53,5 @@ module.exports = function(sequelize, DataTypes) {
         }
     });
     return Tutor;
+
 };
