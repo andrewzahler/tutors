@@ -1,4 +1,3 @@
-
 module.exports = function(sequelize, DataTypes) {
 
     var User = sequelize.define("User", {
@@ -6,13 +5,11 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.INTEGER,
             allowNull: false,
             autoIncrement: true,
-            primaryKey: true,
-          msg:"User.Student error with foreign key"
+            primaryKey: true
         },
         username: {
             type: DataTypes.STRING,
             allowNull: false,
-          msg:"User.Student error with foreign key"
         },
         password: {
             type: DataTypes.STRING,
@@ -21,30 +18,28 @@ module.exports = function(sequelize, DataTypes) {
         email: {
             type: DataTypes.STRING,
             isEmail: true
+        },
+        type: {
+            type: DataTypes.INTEGER,
+            allowNull: false
         }
 
     }, {
         classMethods: {
             associate: function(models) {
-                User.hasMany(models.Tutor, {
+                User.hasOne(models.Tutor, {
                     foreignKey: {
-                      allowNull: false,
-                      msg:"User.Tutor error with foreign key"
+                        allowNull: false
                     }
                 });
+
                 User.hasOne(models.Student, {
                     foreignKey: {
-                      allowNull: false,
-                      msg:"User.Student error with foreign key"
+                        allowNull: false
                     }
                 });
-            }
+            },
         }
     });
     return User;
 };
-
-
-
-
-

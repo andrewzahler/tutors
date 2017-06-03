@@ -1,171 +1,176 @@
 var express = require("express");
+var passport = require("passport");
+
 var router = express.Router();
 var db = require("../models");
+var passData = require("../config/passport/passport.js");
 
 
 //----home page route--------------------//
-router.get('/', function(req, res, next) {
-  res.render('index');
+router.get('/', function(req, res) {
+    res.render('index');
 });
 //----home page route--------------------//
 
 
+//----register and login routes--------------------//
 
-//----login route--------------------//
-router.get('/login', function(req, res, next) {
-  res.render('login', { output: req.params.id });
+
+router.get('/register', function(req, res) {
+    res.render('register');
 });
-//----login route--------------------//
+router.get('/login', function(req, res) {
+    res.render('login');
+});
 
-
-
-//----register routes--------------------//
 router.get('/register', function(req, res, next) {
-  res.render('register');
+    res.render('register');
 });
-router.post('/register', function(req, res, next) {
-  
-});
+router.post('/register', passport.authenticate('local-signup', {
+    successRedirect: '/student',
+    failureRedirect: '/register'
+}));
+
+//** ROUTE REPLACED BY ABOVE; REMAINDER OF THIS FUNCTION MOVED TO PASSPORT.JS **//
+// router.post('/register', function(req, res, next) {
+//     console.log(req.body);
+    // 
+    // db.User.create(req.body).then(function(dbUser) {
+    //     console.log("creating the user", user);
+    //     var user = {
+    //         type: req.body.value,
+    //         id: req.body.id,
+    //         name: req.body.name,
+    //         phone: req.body.phone,
+    //         address: req.body.address,
+    //         email: req.body.email,
+    //         subject: req.body.subjects
+    //     };
+
+    //     if (req.body.uType == 1) {
+    //         console.log('create student');
+    //         db.Student.create(user).then(function(req, res, next) {
+    //             console.log("new student body here", req.body);
+    //             res.redirect('/student');
+    //         });
+
+    //     } else {
+    //         console.log('create tutor');
+    //         db.Tutor.create(user).then(function(req, res, next) {
+    //             res.redirect('/tutor');
+    //         });
+    //     }
+    //     console.log('USER: ' + JSON.stringify(user));
+    //     //    res.redirect('/');
+    // });
+
+// });
 
 
-router.get('/tutor/:id', function(req, res) {
-  /*  get tutor with id  from database find()*/
-  //    var user = orm.getTutor(id);
-  db.Tutors.findbyId({
-    where: {
-      id: req.params.id
-    },
-    include: [db.Tutor]
-  }).then(function(Tutor) {
-    res.json(Tutor);console.log("Tutor by ID HERE: ",Tutor);
-  }); 
-  res.render('tutors', {  });
-});
+// router.get('/tutor/:id', function(req, res) {
+//     /* get tutor with id  from database find()*/
+// //    var user = orm.getTutor(id);
 
-router.get('/student/:id', function(req, res) {
-  /* get tutor with id */
-  //   var user = orm.getStudent(id);
-  db.Students.findbyId({
-    where: {
-      id: req.params.id
-    },
-    include: [db.Student]
-  }).then(function(dbStudent) {
-    res.json(dbStudent);console.log("Student by ID HERE: ",dbStudent);
-  });
-  res.render('students', {  });
-});
+
+//   res.render('tutors', {  });
+// });
+
+// router.get('/student/:id', function(req, res) {
+//     /* get tutor with id */
+//  //   var user = orm.getStudent(id);
+//   res.render('user.handlebars', {  });
+// });
 // ----register routes--------------------//
 
+router.get('/logout', function(req, res) {
+    req.session.destroy(function(err) {
+        res.redirect('/');
+    });
+});
+router.post('/login', passport.authenticate('local-signin', {
+    successRedirect: '/schedule',
+    failureRedirect: '/login'
+}));
+//----login and register routes--------------------//
 
 
 
-
-
-
-//----schedule route--------------------//
+//----schedule routes --------------------//
 // HTML route to render scheduling page
-router.get('/schedule', function(req, res, next) {
-  res.render('schedule');
+router.get("/schedule", isLoggedIn, function(req, res) {
+    res.render('schedule');
 });
 
 // API post route to create a new appointment
-router.post('/api/appointments', function(req, res, next) { // what does the 'next' argument do?
-  db.Appointment.create(req.body).then(function(dbAppointment) {
-    // sequelize throws error saying I can't add a foreign key value if I try to supply one
-    res.json(dbAppointment);
-    // res.render("/");
-  });
-  console.log(req.body);
+router.post("/api/appointments", function(req, res) { // what does the' argument do?
+    db.Appointment.create(req.body).then(function(dbAppointment) {
+        res.json(dbAppointment);
+        // res.render("/");
+    });
+    console.log(req.body);
 });
-
-
 
 // API get route to find all appointments with left outer join including three models
 router.get("/api/appointments", function(req, res) {
-  db.Appointment.findAll({
-    include: [db.Subject, db.Student, db.Tutor]
-  }).then(function(dbAppointment) {
-    res.json(dbAppointment);
-  });
+    db.Appointment.findAll({
+        include: [db.Student, db.Tutor]
+    }).then(function(dbAppointment) {
+        res.json(dbAppointment);
+    });
 });
 
 // API Get route for retrieving a single appointment
 router.get("/api/appointments/:id", function(req, res) {
-  db.Appointment.findOne({
-    where: {
-      id: req.params.id
-    },
-    include: [db.Subject, db.Student, db.Tutor]
-  }).then(function(dbAppointment) {
-    res.json(dbAppointment);
-  }); 
-});
-
-// API put route for updating appointments
-router.put("/api/appointments", function(req, res) {
-  db.Appointment.update(
-    req.body, {
-      where: {
-        id: req.body.id
-      }
+    db.Appointment.findOne({
+        where: {
+            id: req.params.id
+        },
+        include: [db.Student, db.Tutor]
     }).then(function(dbAppointment) {
-    res.json(dbAppointment);
-  });
+        res.json(dbAppointment);
+    });
 });
 
 //----schedule route--------------------//
 
 
 
-
 //----students route--------------------//
-router.get('/students', function(req, res, next) {
-  res.render('students');
+router.get('/students', function(req, res) {
+    res.render('students');
 });
 //----students route--------------------//
 
 
 
-
 //----tutors route--------------------//
+
 router.get('/tutors', function(req, res, next) {
-  
-  res.render('tutors', req.body);
+    res.render('tutors', req.body);
+});
+
+// API Get route for retrieving all tutors for given subject to populate dropdown on scheduling page
+router.get("/api/tutors/:subject", function(req, res) {
+    db.Tutor.findAll({
+        where: {
+            subject: req.params.subject
+        },
+    }).then(function(dbSubjectTutors) {
+        var hbsObject = {
+            tutors: dbSubjectTutors
+        };
+        res.render("schedule", hbsObject);
+    });
 });
 //----tutors route--------------------//
 
 
-
-
+//--- login helper function --------------//
+function isLoggedIn(req, res, next) {
+    if (req.isAuthenticated())
+        return next();
+    res.redirect('/login');
+}
+//--- login helper function --------------//
 
 module.exports = router;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

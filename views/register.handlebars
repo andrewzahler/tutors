@@ -1,5 +1,3 @@
-
-
 <header>
   <nav class="animated slideInDown">
     <div class="nav-wrapper">
@@ -12,104 +10,141 @@
     </div>
   </nav>
 </header>
-
-
-
 <main>
-<div id="regForm">
-  <div class="container">
-    <div class="row">        
-      <form action="/register" method="post" class="col s12" name="register">
+<div class="container">
+  <div class="row formDiv">
+
+
+    <form action="/register" method="post" class="col s12" name="register">
+
+    <div class="row">
+
+      <div class="input-field col s12">
+        <select id="users" name="uType">
+          <option value="0" disabled selected>Choose your Role</option>
+          <option value="1">Student</option>
+          <option value="2">Tutor</option>
+        </select>
+        <label>Sign up:</label>
+      </div>
+
+
+
+      <div class="col s12">
+        Your Full Name:
+        <div class="input-field inline">
+          <input id="name" type="text" name="name" class="validate">
+          <label for="name" data-error="wrong" data-success="right">Name</label>
+        </div>
+      </div>
+
+
+
+      <div class="col s12">
+        Enter a valid email please:
+        <div class="input-field inline">
+          <input id="email" type="email" name="email" class="validate">
+          <label for="email" data-error="wrong" data-success="right">Email</label>
+        </div>
+      </div>
+
+
+
+      <div class="row">
+        <div class="input-field col s6">
+          <input placeholder"DocBrown" id="userId" name="username" type="text" class="validate">
+          <label for="username">User Name</label>
+        </div>
+      </div>
+
       <div class="row">
         <div class="input-field col s12">
-          <select id="users" name="uType">
-            <option value="0" disabled selected>Choose your Role</option>
-            <option value="1">Student</option>
-            <option value="2">Tutor</option>
-          </select>
-          <label>Sign up:</label>
+          <input id="password" type="password" name="password" class="validate">
+          <label for="password">Password</label>
         </div>
+      </div>
 
 
-        <div class="col s12">
-          Your Full Name:
-          <div class="input-field inline">
-            <input id="name" type="text" name="name" class="validate">
-            <label for="name" data-error="wrong" data-success="right">Name</label>
-          </div>
+      <div class="col s12">
+        Phone number:
+        <div class="input-field inline">
+          <input id="phone" type="phone" name="phone" class="validate">
+          <label for="phone" data-error="wrong" data-success="right">{{! 555-555-1234 }}</label>
         </div>
+      </div>
 
 
-
-        <div class="col s12">
-          Enter a valid email please:
-          <div class="input-field inline">
-            <input id="email" type="email" name="email" class="validate">
-            <label for="email" data-error="wrong" data-success="right">Email</label>
-          </div>
+      <div  class="row">
+        <div class="input-field col s12">
+          <i class="material-icons prefix"></i>
+          <textarea id="address" name="address" class="materialize-textarea"></textarea>
+          <label for="address">Address</label>
         </div>
+      </div>
 
 
-
-        <div class="row">
-          <div class="input-field col s6">
-            <input placeholder"DocBrown" id="userId" name="username" type="text" class="validate">
-            <label for="username">User Name</label>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="input-field col s12">
-            <input id="password" type="password" name="password" class="validate">
-            <label for="password">Password</label>
-          </div>
-        </div>
+      {{! </div> }}
 
 
-        <div class="col s12">
-          Phone number:
-          <div class="input-field inline">
-            <input id="phone" type="phone" name="phone" class="validate">
-            <label for="phone" data-error="wrong" data-success="right">{{! 555-555-1234 }}</label>
-          </div>
-        </div>                
+      <div id="subjects" class="input-field col s12">
+        <select multiple="multiple" name="subjects">
+          <option value="" disabled selected>Choose your Subject</option>
+          <option value="english">Math</option>
+          <option value="math">English</option>
+          <option value="webDevelopment">Web Development</option>
+        </select>
+        <label>Subject</label>
+      </div>
 
 
-        <div  class="row">
-          <div class="input-field col s12">
-            <i class="material-icons prefix"></i>
-            <textarea id="address" name="address" class="materialize-textarea"></textarea>
-            <label for="address">Address</label>
-          </div>
-        </div>        
-
-
-        <div id="subjects" class="input-field col s12">
-          <select multiple="multiple" name="subjects">
-            <option value="" disabled selected>Choose your Subject</option>
-            <option value="Math">Math</option>
-            <option value="English">English</option>
-            <option value="Web-Development">Web-Development</option>
-          </select>
-          <label>Subject</label>
-        </div>
-        <button type="submit">Submit</button>
-    </div>
-      </form>     
+      <button type="submit">Submit</button>
   </div>
+    </form>
+
+    {{! </div> }}
+
+
 </div>
 </div>
+
+
+
+
+
+
+
+
+
+
 </main>
-
-
-
+<footer class="page-footer animated slideInUp">
+  <div class="container">
+    <div class="row">
+      <div class="col l6 s12">
+        <h5 class="white-text">Footer Content</h5>
+        <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+      </div>
+      <div class="col l4 offset-l2 s12">
+        <h5 class="white-text">Links</h5>
+        <ul>
+          <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+          <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-copyright">
+    <div class="container">
+      © 2017 Copyright Deloreans
+      <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+    </div>
+  </div>
+</footer>
 
 <script type="text/javascript">
 $(document).ready(function() {
 $('select').material_select();
-});  
-
-
+});
 var Privileges = jQuery('#users');
 var select = this.value;
 Privileges.change(function () {
@@ -119,5 +154,4 @@ $('#subjects').show();
 else $('#subjects').hide(); // hide div if value is not "custom"
 });
 </script>
-</body>
-</html>
+
