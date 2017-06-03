@@ -29,11 +29,8 @@ app.use("/", routes);
 require('./config/passport/passport.js')(passport);
 
 // Syncing our sequelize models and then starting our express app
-<<<<<<< HEAD
-db.sequelize.sync().then(function() {
-=======
+
 db.sequelize.sync({}).then(function() {
->>>>>>> bf298aab1cc6d339e4e94628f22941db56b03a7d
   app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
   });

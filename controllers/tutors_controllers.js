@@ -139,6 +139,7 @@ router.get('/schedule', function(req, res, next) {
     });
     // res.render('schedule');
 
+});
 // API post route to create a new appointment
 router.post("/api/appointments", function(req, res) { // what does the' argument do?
     db.Appointment.create(req.body).then(function(dbAppointment) {
@@ -257,3 +258,6 @@ function isLoggedIn(req, res, next) {
 //--- login helper function --------------//
 
 module.exports = router;
+
+
+
