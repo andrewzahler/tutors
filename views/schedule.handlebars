@@ -16,31 +16,28 @@
             <h4 style="text-align: center">Schedule a Tutoring Appointment</h4>
             <div class="col s6 offset-s3">
                 <div class="row">
-                    <form action="/api/appointments" method="post" class="col s12" name="appointment">
+                    <form id="appointment" action="/api/appointments" method="post" class="col s12" name="appointment">
                      <div class="input-field s12">
-                        <select name="subject">
+                        <select id="subjects-select" name="subject">
                             <option value="" disabled selected>Choose your option</option>
-                            <option value="1" name="math">Math</option>
-                            <option value="2" name="reading">Reading</option>
-                            <option value="3" name="webDevelopment">Web Development</option>
+                            <option value="Math" name="math">Math</option>
+                            <option value="Reading" name="reading">Reading</option>
+                            <option value="Web Development" name="webDevelopment">Web Development</option>
                         </select>
                         <label>Select a Subject</label>
                     </div>
                     <div class="input-field s12">
-                        <select name="tutor">
+                        <select id="tutors-select" name="tutor">
                             <option value="" disabled selected>Choose your option</option>
-                            <option value="1" name="Option 1">Option 1</option>
-                            <option value="2" name="Option 2">Option 2</option>
-                            <option value="3" name="Option 3">Option 3</option>
                         </select>
                         <label>Select a Tutor</label>
                     </div>
                     <div class="input-field s12">
                         <label>Select a Date</label>
-                        <input name="date" type="date" placeholder="Click to open calendar" class="datepicker">
+                        <input id="date-picker" name="date" type="date" placeholder="Click to open calendar" class="datepicker">
                     </div>
                     <div class="input-field s12">
-                        <select name="time">
+                        <select id="time-select" name="time">
                             <option value="" disabled selected>Choose your option</option>
                             <option value="09:00">09:00</option>
                             <option value="10:00">10:00</option>
@@ -59,7 +56,7 @@
                         <label>Select a Time Slot</label>
                     </div>
                      <div class="input-field s12">
-                        <select name="hours">
+                        <select id="hours-select" name="hours">
                             <option value="" disabled selected>Choose your option</option>
                             <option value="1" name="oneHour">One hour</option>
                             <option value="2" name="twoHours">Two hours</option>
@@ -72,7 +69,7 @@
                         <label for="description">Please tell us what you'd like to focus on during your appointment.</label>
                     </div>
                     <div class="col s6 offset-s4">
-                        <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+                        <button id="submit" class="btn waves-effect waves-light" type="submit" name="action">Submit
                             <i class="material-icons right">send</i>
                         </button>
                     </div>
@@ -106,12 +103,5 @@
     </div>
 </footer>
 <script type="text/javascript">
-$(document).ready(function() {
-    $('select').material_select();
-});
-$('.datepicker').pickadate({
-    selectMonths: true, // Creates a dropdown to control month
-    selectYears: 15, // Creates a dropdown of 15 years to control year
-    format: "yyyy-mm-dd"
-});
+
 </script>

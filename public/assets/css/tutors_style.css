@@ -34,7 +34,7 @@ nav, footer{
 	text-align: center;
 	/*font-family: 'Handlee', cursive;*/
 	padding: 15px;
-	background-color: #ffebee ;
+	background: rgba(255, 235, 238, 1);
 	/*opacity: 0.5;*/
 }
 .header-txt{
@@ -49,7 +49,7 @@ nav, footer{
 }
 .header-students{
 	margin-top: 10px;
-	background-color: #ffebee;
+	background: rgba(255, 235, 238, 1);
 	margin-bottom: 0px;
 	color: #ef5350;
 	font-weight: bold;
@@ -60,20 +60,35 @@ nav, footer{
 	width: 300px;
 	height: 300px;
 }
-.card{
-	background-color: #ffebee;
+/*.card{
+	background: rgba(255, 235, 238, 1);
 	color: #ef5350;
+}*/
+.first-div{
+	float: left;
+	border: solid 2px #fff;
+	
+}
+
+.second-div{
+	float: left;
+	border: solid 2px #fff;
+	margin: auto;
+}
+.third-div{
+	float: left;
+	border: solid 2px #fff;
+	margin: auto;
 }
 
 .subject-row, .totur-row{
 	margin-top: 15px;
 }
-/*
-h1.super-header {
-    line-height: 1;
-    font-size: 60px
-}
 
-h1 {
-    font-size: 42px
-}*/
+.mid-main{
+	background: rgba(255, 235, 238, 1);
+	/*width: 100%;*/
+	padding: 20px;
+	overflow: auto;
+	/*opacity: 0.5;*/
+}

@@ -23,7 +23,7 @@ module.exports = function(sequelize, DataTypes) {
             }
         },
         time: {
-            type: DataTypes.TIME,
+            type: DataTypes.STRING,
             allowNull: false,
             validate: {
                 notEmpty: true
