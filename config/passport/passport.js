@@ -69,11 +69,11 @@ module.exports = function(passport, user) {
                                 address: req.body.address,
                                 email: req.body.email,
                                 subjects: req.body.subjects,
-                                UserId: newUser.dataValues.id                               
+                                UserId: newUser.dataValues.id
                             };
                             // checks to see if new user is tutor or student
                             if (req.body.uType == 1) {
-                                
+
                                 console.log('create student', secondaryData);
                                 // creates student
                                 Student.create(secondaryData).then(function(req, res) {

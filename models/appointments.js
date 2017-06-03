@@ -1,4 +1,4 @@
- module.exports = function(sequelize, DataTypes) {
+module.exports = function(sequelize, DataTypes) {
 
     var Appointment = sequelize.define("Appointment", {
         id: {
@@ -23,7 +23,7 @@
             }
         },
         time: {
-            type: DataTypes.TIME,
+            type: DataTypes.STRING,
             allowNull: false,
             validate: {
                 notEmpty: true
