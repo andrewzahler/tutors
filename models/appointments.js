@@ -19,7 +19,7 @@ module.exports = function(sequelize, DataTypes) {
                 isDate: true,
                 isAfter: "2017-05-01",
                 isBefore: "2018-12-31",
-                notEmpty: true,
+                notEmpty: true
             }
         },
         time: {
@@ -65,7 +65,7 @@ module.exports = function(sequelize, DataTypes) {
         }
     });
     return Appointment;
-<<<<<<< HEAD
+
 };
 
 
@@ -84,6 +84,6 @@ module.exports = function(sequelize, DataTypes) {
 // 	});
 // 	return Appointment;
 // };
-=======
-};
->>>>>>> f4ba68dfaf4e37b2a5b8e3154a1c234c77a149ba
+
+//};
+
