@@ -29,14 +29,15 @@ module.exports = function(sequelize, DataTypes) {
                 notEmpty: true
             }
         },
-        hours: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            validate: {
-                isDecimal: true,
-                notEmpty: true
-            }
-        },
+        // can add this layer of options once MVP working
+        // hours: {
+        //     type: DataTypes.INTEGER,
+        //     allowNull: false,
+        //     validate: {
+        //         isDecimal: true,
+        //         notEmpty: true
+        //     }
+        // },
         description: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -65,25 +66,4 @@ module.exports = function(sequelize, DataTypes) {
         }
     });
     return Appointment;
-<<<<<<< HEAD
 };
-
-
-
-
-
-
-
-
-
-
-// module.exports = function(sequelize, DataTypes) {
-
-// 	var Appointment = sequelize.define("Appointment", {
-// 			// Uh oh. What comes next?
-// 	});
-// 	return Appointment;
-// };
-=======
-};
->>>>>>> f4ba68dfaf4e37b2a5b8e3154a1c234c77a149ba

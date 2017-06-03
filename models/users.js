@@ -20,6 +20,10 @@ module.exports = function(sequelize, DataTypes) {
             type: DataTypes.STRING,
             isEmail: true
         },
+        type: {
+            type: DataTypes.INTEGER,
+            allowNull: false
+        }
 
     }, {
         classMethods: {
@@ -29,6 +33,7 @@ module.exports = function(sequelize, DataTypes) {
                         allowNull: false
                     }
                 });
+
                 User.hasOne(models.Student, {
                     foreignKey: {
                         allowNull: false

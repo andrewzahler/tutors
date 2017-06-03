@@ -1,7 +1,5 @@
 
 
-
-
 body {
     display: flex;
     min-height: 100vh;
@@ -15,6 +13,11 @@ main {
 nav, footer{
 	font-family: 'Acme', sans-serif;
 }
+
+h4, h6 {
+	text-align: center;
+}
+
 .logo {
     margin-left: 10px;
     /*font-family: 'Handlee', cursive;*/
@@ -68,6 +71,19 @@ nav, footer{
 .subject-row, .totur-row{
 	margin-top: 15px;
 }
+
+.formDiv {
+	background-color: #ffebee;
+	margin-top: 25px;
+	padding: 15px;
+}
+
+.textDiv {
+	padding-top: 15px;
+	text-align: center;
+}
+
+
 /*
 h1.super-header {
     line-height: 1;
