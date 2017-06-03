@@ -13,22 +13,30 @@
 <main>
     <div class="container">
         <div class="row">
-            <h4 style="text-align: center">Schedule a Tutoring Appointment</h4>
-            <div class="col s6 offset-s3">
+            <div class="col s6 offset-s3 formDiv">
+            <h4>Schedule a Tutoring Appointment</h4>
                 <div class="row">
                     <form id="appointment" action="/api/appointments" method="post" class="col s12" name="appointment">
                      <div class="input-field s12">
                         <select id="subjects-select" name="subject">
                             <option value="" disabled selected>Choose your option</option>
+
                             <option value="Math" name="math">Math</option>
                             <option value="Reading" name="reading">Reading</option>
                             <option value="Web Development" name="webDevelopment">Web Development</option>
+
                         </select>
                         <label>Select a Subject</label>
                     </div>
+                    {{#if appointments.subject}}
                     <div class="input-field s12">
                         <select id="tutors-select" name="tutor">
                             <option value="" disabled selected>Choose your option</option>
+
+                            {{#each tutors}}
+                                <option value="{{this.TutorId}}" name="{{this.name}}">{{this.name}}</option>
+                            {{/each}}
+
                         </select>
                         <label>Select a Tutor</label>
                     </div>
@@ -39,6 +47,7 @@
                     <div class="input-field s12">
                         <select id="time-select" name="time">
                             <option value="" disabled selected>Choose your option</option>
+                            {{!-- Want to only show the available times for this date, but how? --}}
                             <option value="09:00">09:00</option>
                             <option value="10:00">10:00</option>
                             <option value="11:00">11:00</option>
@@ -54,16 +63,17 @@
                             <option value="21:00">21:00</option>
                         </select>
                         <label>Select a Time Slot</label>
-                    </div>
                      <div class="input-field s12">
                         <select id="hours-select" name="hours">
+<div class="input-field s12">
+                        <select name="hours">
                             <option value="" disabled selected>Choose your option</option>
                             <option value="1" name="oneHour">One hour</option>
                             <option value="2" name="twoHours">Two hours</option>
                             <option value="3" name="threeHours">Three hours</option>
                         </select>
                         <label>How Long?</label>
-                    </div>
+                    </div> --}}
                     <div class="input-field s12">
                         <textarea id="description" name="description" type: "textarea" class="materialize-textarea"></textarea>
                         <label for="description">Please tell us what you'd like to focus on during your appointment.</label>
@@ -73,6 +83,7 @@
                             <i class="material-icons right">send</i>
                         </button>
                     </div>
+                    {{/if}}
                     </form>
                 </div>
             </div>
@@ -102,6 +113,3 @@
         </div>
     </div>
 </footer>
-<script type="text/javascript">
-
-</script>
