@@ -24,43 +24,6 @@ router.get('/register', function(req, res, next) {
   res.render('register');
 });
 router.post('/register', function(req, res, next) {
-  console.log("username here", req.body.name)
-  db.User.create(req.body).then(function(User) {
-    console.log("creating the user", User)
-
-
-  if (req.body.uType == 1) {
-      console.log('create student ', User.Student);
-      db.Student.create(User.Student).then(function(req,res,next){
-        
-        console.log("new student body here", req.body);
-//        res.redirect('/student/');
-      });                            
-      //      *
-      //      *          * create the student - if sequelize is succesful:
-      //      *          * redirect to student page
-      //      *          * else 
-      //      *          * redirect to error page
-      //      *          *
-
-    } else {
-      console.log('create tutor ', User.Tutor);
-      db.Tutor.create(User.Tutor).then(function(req,res,next){
-        var Tutor = {
-          type:req.body.value,
-          id: req.body.id,
-          name: req.body.name,
-          phone: req.body.phone,
-          address: req.body.address,
-          email: req.body.email,
-          subject: req.body.subjects
-        };
-        res.redirect('/tutor/');
-      });                             
-    }
-    console.log('USER: ' + JSON.stringify(User));
-    //    res.redirect('/');
-  });
   
 });
 
