@@ -8,10 +8,6 @@ module.exports = function(sequelize, DataTypes) {
             autoIncrement: true,
             primaryKey: true
         },
-        username: {
-            type: DataTypes.STRING,
-            allowNull: false
-        },
         password: {
             type: DataTypes.STRING,
             allowNull: false
@@ -19,12 +15,7 @@ module.exports = function(sequelize, DataTypes) {
         email: {
             type: DataTypes.STRING,
             isEmail: true
-        },
-        type: {
-            type: DataTypes.INTEGER,
-            allowNull: false
         }
-
     }, {
         classMethods: {
             associate: function(models) {

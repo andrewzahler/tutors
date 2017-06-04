@@ -7,21 +7,21 @@ var passData = require("../config/passport/passport.js");
 
 
 
-router.get('/index', function(req, res, next){
-  db.Student.findAll({
+router.get('/index', function(req, res, next) {
+    db.Student.findAll({
 
     }).then(function(dbStudent) {
-      // console.log(dbBurger);
-      // var burgers = dbBurger[0].dataValues;
-      // console.log(burgers);
-      var hbsObject = {
-      students: dbStudent
-    };
-    console.log(hbsObject);
-    res.render("index", hbsObject);
-      // res.json(dbBurger);
+        // console.log(dbBurger);
+        // var burgers = dbBurger[0].dataValues;
+        // console.log(burgers);
+        var hbsObject = {
+            students: dbStudent
+        };
+        console.log(hbsObject);
+        res.render("index", hbsObject);
+        // res.json(dbBurger);
     });
-  // res.render('index');
+    // res.render('index');
 });
 
 
@@ -33,75 +33,19 @@ router.get('/', function(req, res) {
 
 //----register and login routes--------------------//
 
+router.get('/login', function(req, res) {
+    res.render('login');
+});
 
-
-router.get('/register', function(req, res) {
+router.get('/register', function(req, res, next) {
     res.render('register');
 });
 
-router.get('/login', function(req, res) {
-    res.render('login', { output: req.params.id });
-});
-
-// router.get('/register', function(req, res, next) {
-//     res.render('register');
-// });
-
 router.post('/register', passport.authenticate('local-signup', {
-    successRedirect: '/login',
+    successRedirect: '/profile',
     failureRedirect: '/register'
 }));
 
-//** ROUTE REPLACED BY ABOVE; REMAINDER OF THIS FUNCTION MOVED TO PASSPORT.JS **//
-// router.post('/register', function(req, res, next) {
-//     console.log(req.body);
-    // 
-    // db.User.create(req.body).then(function(dbUser) {
-    //     console.log("creating the user", user);
-    //     var user = {
-    //         type: req.body.value,
-    //         id: req.body.id,
-    //         name: req.body.name,
-    //         phone: req.body.phone,
-    //         address: req.body.address,
-    //         email: req.body.email,
-    //         subject: req.body.subjects
-    //     };
-
-    //     if (req.body.uType == 1) {
-    //         console.log('create student');
-    //         db.Student.create(user).then(function(req, res, next) {
-    //             console.log("new student body here", req.body);
-    //             res.redirect('/student');
-    //         });
-
-    //     } else {
-    //         console.log('create tutor');
-    //         db.Tutor.create(user).then(function(req, res, next) {
-    //             res.redirect('/tutor');
-    //         });
-    //     }
-    //     console.log('USER: ' + JSON.stringify(user));
-    //     //    res.redirect('/');
-    // });
-
-// });
-
-
-// router.get('/tutor/:id', function(req, res) {
-//     /* get tutor with id  from database find()*/
-// //    var user = orm.getTutor(id);
-
-
-//   res.render('tutors', {  });
-// });
-
-// router.get('/student/:id', function(req, res) {
-//     /* get tutor with id */
-//  //   var user = orm.getStudent(id);
-//   res.render('user.handlebars', {  });
-// });
-// ----register routes--------------------//
 
 router.get('/logout', function(req, res) {
     req.session.destroy(function(err) {
@@ -119,6 +63,36 @@ router.post('/login', passport.authenticate('local-signin', {
 //----login and register routes--------------------//
 
 
+//---- profile routes -----//
+
+router.get('/profile', isLoggedIn, function(req, res, next) {
+    res.render('profile');
+});
+
+router.post('/profile', function(req, res) {
+    var userData = {
+        uType: req.body.uType,
+        name: req.body.name,
+        username: req.body.username,
+        phone: req.body.phone,
+        address: req.body.address,
+        UserId: req.user.id
+    };
+    console.log("This is the userData object", userData);
+    if (req.body.uType == 1) {
+        db.Student.create(userData).then(function(dbStudent) {
+            res.redirect('/students');
+        });
+    } else {
+        userData.subjects = req.body.subjects;
+        db.Tutor.create(userData).then(function(dbTutor) {
+            res.redirect('/tutors');
+        });
+    }
+});
+
+//---- profile routes -----//
+
 
 //----schedule routes --------------------//
 // HTML route to render scheduling page
@@ -127,15 +101,15 @@ router.get('/schedule', function(req, res, next) {
     db.Tutor.findAll({
 
     }).then(function(dbTutor) {
-      // console.log(dbBurger);
-      // var burgers = dbBurger[0].dataValues;
-      // console.log(burgers);
-      var hbsObject = {
-      Tutors: dbTutor
-    };
-    console.log(hbsObject);
-    res.render("schedule", hbsObject);
-      // res.json(dbBurger);
+        // console.log(dbBurger);
+        // var burgers = dbBurger[0].dataValues;
+        // console.log(burgers);
+        var hbsObject = {
+            Tutors: dbTutor
+        };
+        console.log(hbsObject);
+        res.render("schedule", hbsObject);
+        // res.json(dbBurger);
     });
     // res.render('schedule');
 
@@ -185,20 +159,20 @@ router.get('/students', function(req, res) {
 //get all students
 router.get('/api/students', function(req, res, next) {
     db.Student.findAll(
-      // include: [db.Post]
+        // include: [db.Post]
     ).then(function(dbStudent) {
-      res.json(dbStudent);
+        res.json(dbStudent);
     });
 });
 //get students by id
 router.get('/api/students/:id', function(req, res, next) {
     db.Student.findAll({
         where: {
-        id: req.params.id
-      }
-      // include: [db.Post]
+            id: req.params.id
+        }
+        // include: [db.Post]
     }).then(function(dbStudent) {
-      res.json(dbStudent);
+        res.json(dbStudent);
     });
 });
 
@@ -214,9 +188,9 @@ router.get('/tutors', function(req, res, next) {
 //----tutors route--------------------//
 router.get('/api/tutors', function(req, res, next) {
     db.Tutor.findAll(
-      // include: [db.Post]
+        // include: [db.Post]
     ).then(function(dbTutor) {
-      res.json(dbTutor);
+        res.json(dbTutor);
     });
 });
 
@@ -224,10 +198,10 @@ router.get('/api/tutors', function(req, res, next) {
 router.get('/api/tutors/:id', function(req, res, next) {
     db.Tutor.findAll({
         where: {
-        id: req.params.id
-      }
+            id: req.params.id
+        }
     }).then(function(dbTutor) {
-      res.json(dbTutor);
+        res.json(dbTutor);
     });
 });
 
@@ -258,4 +232,3 @@ function isLoggedIn(req, res, next) {
 //--- login helper function --------------//
 
 module.exports = router;
-
