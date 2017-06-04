@@ -52,42 +52,17 @@ module.exports = function(passport, user) {
                 } else {
                     var userPassword = generateHash(password);
                     var authData = {
-                        username: initialData.body.username,
                         password: userPassword,
                         email: email,
-                        type: initialData.body.uType
                     };
                     // user creation
                     User.create(authData).then(function(newUser, created) {
-                        console.log("creating the user", authData);
                         if (!newUser) {
                             return done(null, false);
                         }
                         if (newUser) {
-                            console.log(newUser);
-                            var secondaryData = {
-                                name: req.body.name,
-                                phone: req.body.phone,
-                                address: req.body.address,
-                                email: req.body.email,
-                                subjects: req.body.subjects,
-                                UserId: newUser.dataValues.id
-                            };
-                            // checks to see if new user is tutor or student
-                            if (newUser && req.body.uType == 1) {
-                                Student.create(secondaryData).then(function(req, res) {
-                                    return done(null, newUser);
-                                    // res.redirect('/student');
-                                });
-
-                            } else if (newUser && req.body.uType == 2) {
-                                // creates tutor
-                                Tutor.create(secondaryData).then(function(req, res) {
-                                    return done(null, newUser);
-                                    // res.redirect('/tutor');
-                                });
-                            }
-
+                             return done(null, newUser);
+                
                             // return done(null, newUser);
                         }
                     });
