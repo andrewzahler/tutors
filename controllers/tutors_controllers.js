@@ -33,14 +33,8 @@ router.get('/', function(req, res) {
 
 //----register and login routes--------------------//
 
-
-
-router.get('/register', function(req, res) {
-    res.render('register');
-});
-
 router.get('/login', function(req, res) {
-    res.render('login', { output: req.params.id });
+    res.render('login');
 });
 
 router.get('/register', function(req, res, next) {
@@ -48,7 +42,7 @@ router.get('/register', function(req, res, next) {
 });
 
 router.post('/register', passport.authenticate('local-signup', {
-    successRedirect: '/schedule',
+    successRedirect: '/profile',
     failureRedirect: '/register'
 }));
 
@@ -68,6 +62,36 @@ router.post('/login', passport.authenticate('local-signin', {
 
 //----login and register routes--------------------//
 
+
+//---- profile routes -----//
+
+router.get('/profile', isLoggedIn, function(req, res, next) {
+    res.render('profile');
+});
+
+router.post('/profile', function(req, res) {
+    var userData = {
+        uType: req.body.uType,
+        name: req.body.name,
+        username: req.body.username,
+        phone: req.body.phone,
+        address: req.body.address,
+        UserId: req.user.id
+    };
+    console.log("This is the userData object", userData);
+    if (req.body.uType == 1) {
+        db.Student.create(userData).then(function(dbStudent) {
+            res.redirect('/students');
+        });
+    } else {
+        userData.subjects = req.body.subjects;
+        db.Tutor.create(userData).then(function(dbTutor) {
+            res.redirect('/tutors');
+        });
+    }
+});
+
+//---- profile routes -----//
 
 
 //----schedule routes --------------------//

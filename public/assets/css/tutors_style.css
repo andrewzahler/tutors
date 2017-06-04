@@ -87,13 +87,17 @@ h4, h6 {
 .subject-row, .totur-row{
 	margin-top: 15px;
 }
-<<<<<<< HEAD
-=======
+
 
 .formDiv {
 	background-color: #ffebee;
 	margin-top: 25px;
 	padding: 15px;
+}
+
+.left {
+	border-right: 10px solid white;
+	margin-right: 10px;
 }
 
 .textDiv {
@@ -106,13 +110,13 @@ h4, h6 {
 h1.super-header {
     line-height: 1;
     font-size: 60px
-}
->>>>>>> bf298aab1cc6d339e4e94628f22941db56b03a7d
+
 
 .mid-main{
 	background: rgba(255, 235, 238, 1);
 	/*width: 100%;*/
-	padding: 20px;
-	overflow: auto;
+/*	padding: 20px;
+	overflow: auto;*/
 	/*opacity: 0.5;*/
-}
+/*}
+*/
