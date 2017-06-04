@@ -11,28 +11,76 @@
   </nav>
 </header>
 <main>
-<div class="container">
-  <div class="row">
-    <div class="col s6 offset-s3 formDiv">
-      <h4>Schedule a Tutoring Appointment</h4>
-      <div class="row">
-        <form id="appointment" action="/api/appointments" method="post" class="col s12" name="appointment">
-        <div class="input-field s12">
-          <select id="subjects-select" name="subject">
-            <option value="" disabled selected>Choose your option</option>
 
-            <option value="Math" name="math">Math</option>
-            <option value="Reading" name="reading">Reading</option>
-            <option value="Web Development" name="webDevelopment">Web Development</option>
+    <div class="container">
+        <div class="row">
+            <div class="col s6 offset-s3 formDiv">
+                <h4>Schedule a Tutoring Appointment</h4>
+                <div class="row">
 
-          </select>
-          <label>Select a Subject</label>
-        </div>
-        <div class="input-field s12">
-          <select id="tutors-select" name="tutor">
-            <option value="" disabled selected>Choose your Tutor</option>
-          </select>
-          <label>Select a Tutor</label>
+                    <form id="appointment" action="/api/appointments" method="post" class="col s12" name="appointment">
+                         <div class="input-field s12">
+                            <select id="subjects-select" name="subject">
+                                <option value="" disabled selected>Choose your option</option>
+
+                                <option value="Math" name="math">Math</option>
+                                <option value="Reading" name="reading">Reading</option>
+                                <option value="Web Development" name="webDevelopment">Web Development</option>
+
+                            </select>
+                            <label>Select a Subject</label>
+                        </div>
+                        <div class="input-field s12">
+                            <select id="tutors-select" name="tutor">
+                                <option value="" disabled selected>Choose your Tutor</option>
+                            </select>
+                            <label>Select a Tutor</label>
+                        </div>
+                        <div class="input-field s12">
+                            <label>Select a Date</label>
+                            <input id="date-picker" name="date" type="date" placeholder="Click to open calendar" class="datepicker">
+                        </div>
+                        <div class="input-field s12">
+                            <select id="time-select" name="time">
+                                <option value="" disabled selected>Choose your option</option>
+                               
+                                <option value="09:00">09:00</option>
+                                <option value="10:00">10:00</option>
+                                <option value="11:00">11:00</option>
+                                <option value="12:00">12:00</option>
+                                <option value="13:00">13:00</option>
+                                <option value="14:00">14:00</option>
+                                <option value="15:00">15:00</option>
+                                <option value="16:00">16:00</option>
+                                <option value="17:00">17:00</option>
+                                <option value="18:00">18:00</option>
+                                <option value="19:00">19:00</option>
+                                <option value="20:00">20:00</option>
+                                <option value="21:00">21:00</option>
+                            </select>
+                            <label>Select a Time Slot</label>
+                         <div class="input-field s12">
+                            <select id="hours-select" name="hours">
+                                <option value="" disabled selected>Choose your option</option>
+                                <option value="1" name="oneHour">One hour</option>
+                                <option value="2" name="twoHours">Two hours</option>
+                                <option value="3" name="threeHours">Three hours</option>
+                            </select>
+                            <label>How Long?</label>
+                        </div> 
+                        <div class="input-field s12">
+                            <textarea id="description" name="description" type: "textarea" class="materialize-textarea"></textarea>
+                            <label for="description">Please tell us what you'd like to focus on during your appointment.</label>
+                        </div>
+                        <div class="col s6 offset-s4">
+                            <button id="submit" class="btn waves-effect waves-light" type="submit" name="action">Submit
+                                <i class="material-icons right">send</i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
         </div>
         <div class="input-field s12">
           <label>Select a Date</label>
@@ -80,11 +128,12 @@
         </div>
       </div>
     </div>
-  </div>
-  </main>
+
+</main>
 
 
-  <footer class="page-footer animated slideInUp">
+<footer class="page-footer animated slideInUp">
+
     <div class="container">
       <div class="row">
         <div class="col l6 s12">
@@ -106,4 +155,5 @@
         <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
       </div>
     </div>
-    </footer>
+
+</footer>
