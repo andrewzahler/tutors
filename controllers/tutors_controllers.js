@@ -23,7 +23,9 @@ router.get('/index', function(req, res, next) {
     });
     // res.render('index');
 });
-
+router.get('/about', function(req, res) {
+    res.render('about');
+});
 
 
 //----home page route--------------------//
@@ -70,14 +72,14 @@ router.get('/profile', isLoggedIn, function(req, res, next) {
 });
 
 router.post('/profile', function(req, res) {
-    // var userData = {
-    //     uType: req.body.uType,
-    //     name: req.body.name,
-    //     username: req.body.username,
-    //     phone: req.body.phone,
-    //     address: req.body.address,
-    //     UserId: req.user.id
-    // };
+    var userData = {
+        uType: req.body.uType,
+        name: req.body.name,
+        username: req.body.username,
+        phone: req.body.phone,
+        address: req.body.address,
+        UserId: req.user.id
+    };
     console.log("This is the userData object", userData);
     if (req.body.uType == 1) {
         db.Student.create(userData).then(function(dbStudent) {
@@ -150,9 +152,7 @@ router.get("/api/appointments/:id", function(req, res) {
 
 
 //----students route--------------------//
-
 router.get('/students', function(req, res) {
-
     res.render('students');
 });
 //----students route--------------------//
