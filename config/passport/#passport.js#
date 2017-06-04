@@ -8,9 +8,7 @@ module.exports = function(passport, user) {
     var Student = models.Student;
     var Tutor = models.Tutor;
     var LocalStrategy = require('passport-local').Strategy;
-console.log("Fucking User here ",User);
-console.log("Fucking User here ",Tutor);
-console.log("Fucking User here ",Student);
+
     //serialize user
     passport.serializeUser(function(user, done) {
         console.log(user);
@@ -86,10 +84,7 @@ console.log("Fucking User here ",Student);
             var isValidPassword = function(userpass, password) {
                 return bCrypt.compareSync(password, userpass);
             };
-console.log("Fucking User here ",User);
-console.log("Fucking User here ",Tutor);
-console.log("Fucking User here ",Student);
- User.findOne({
+            User.findOne({
                 where: {
                     email: email
                 }
