@@ -62,8 +62,9 @@ module.exports = function(passport, user) {
                             return done(null, false);
                         }
                         if (newUser) {
-                            console.log(newUser);
+              //              console.log(newUser);
                             var secondaryData = {
+                                uType:req.body.uType,
                                 name: req.body.name,
                                 phone: req.body.phone,
                                 address: req.body.address,
@@ -73,20 +74,46 @@ module.exports = function(passport, user) {
                             };
                             // checks to see if new user is tutor or student
                             if (req.body.uType == 1) {
-
-                                console.log('create student', secondaryData);
+                              User.findOne(
+                                {
+                                  where: {
+                                    id: req.user.id
+                                  }
+                                }
+                              ).then(function(dbUser) {
+                                var hbsObject = {
+                                  user: dbUser
+                                };
+                                console.log("Student hbsObject",hbsObject);
+                                //res.render("schedule", hbsObject);
+                              });
+                                //console.log('create student', secondaryData);
                                 // creates student
                                 Student.create(secondaryData).then(function(req, res) {
-                                    console.log("new student body here", req.body);
+                                  //  console.log("new student body here", req.body);
                                     return done(null, newUser);
-                                    // res.redirect('/student');
+                                     //res.redirect('/student');
                                 });
 
                             } else {
                                 // creates tutor
-                                console.log('create tutor', secondaryData);
+                              User.findOne(
+                                {
+                                  where: {
+                                    id: req.user.id
+                                  }
+                                }
+                              ).then(function(dbUser) {
+                                var hbsObject = {
+                                  user: dbUser
+                                };
+                                console.log("Tutor hbsObject",hbsObject);
+                                //res.render("schedule", hbsObject);
+                              });
+                                //console.log('create tutor', secondaryData);
+                              
                                 Tutor.create(secondaryData).then(function(req, res) {
-                                    console.log("new tutor body here", req.body);
+                                  //  console.log("new tutor body here", req.body);
                                     return done(null, newUser);
                                     // res.redirect('/tutor');
                                 });
