@@ -1,4 +1,4 @@
-//load bcrypt
+//load bcrypt, which secures passwords
 var bCrypt = require('bcrypt-nodejs');
 var models = require("../../models");
 
@@ -7,15 +7,15 @@ module.exports = function(passport, user) {
     var User = models.User;
     var Student = models.Student;
     var Tutor = models.Tutor;
+    // Passport works by using "strategies" for authentication; here we're requiring a simple username and password strategy 
     var LocalStrategy = require('passport-local').Strategy;
 
-    //serialize user
+    //serialize user: this saves the User id in a session so we can retrieve it
     passport.serializeUser(function(user, done) {
-        console.log(user);
         done(null, user.id);
     });
 
-    // deserialize user 
+    // deserialize user: this retrieves the User id 
     passport.deserializeUser(function(id, done) {
         User.findById(id).then(function(user) {
             if (user) {
@@ -26,7 +26,7 @@ module.exports = function(passport, user) {
         });
     });
 
-    // register strategy for Passport
+    // this is the Passport strategy for registering a new user
     passport.use('local-signup', new LocalStrategy({
             usernameField: 'email',
             passwordField: 'password',
@@ -38,14 +38,13 @@ module.exports = function(passport, user) {
                 return bCrypt.hashSync(password, bCrypt.genSaltSync(8), null);
             };
             var initialData = req;
-            // checking to see if given email has already been used to create a user
+            // checking to see if given email has already been used to register a user
             User.findOne({
                 where: {
                     email: email
                 }
             }).then(function(user) {
                 if (user) {
-                    console.log(user);
                     return done(null, false, {
                         message: 'That email is already taken'
                     });
@@ -55,22 +54,20 @@ module.exports = function(passport, user) {
                         password: userPassword,
                         email: email,
                     };
-                    // user creation
+                    // If not, create a user
                     User.create(authData).then(function(newUser, created) {
                         if (!newUser) {
                             return done(null, false);
                         }
                         if (newUser) {
                              return done(null, newUser);
-
-                            // return done(null, newUser);
                         }
                     });
                 }
             });
         }
     ));
-    //LOCAL SIGNIN
+    // This is the Passport strategy for logging in a user
     passport.use('local-signin', new LocalStrategy({
             // by default, local strategy uses username and password, we will override with email
             usernameField: 'email',
