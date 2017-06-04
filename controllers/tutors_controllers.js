@@ -7,21 +7,21 @@ var passData = require("../config/passport/passport.js");
 
 
 
-router.get('/index', function(req, res, next){
-	db.Student.findAll({
+router.get('/index', function(req, res, next) {
+    db.Student.findAll({
 
     }).then(function(dbStudent) {
-      // console.log(dbBurger);
-      // var burgers = dbBurger[0].dataValues;
-      // console.log(burgers);
-      var hbsObject = {
-      students: dbStudent
-    };
-    console.log(hbsObject);
-    res.render("index", hbsObject);
-      // res.json(dbBurger);
+        // console.log(dbBurger);
+        // var burgers = dbBurger[0].dataValues;
+        // console.log(burgers);
+        var hbsObject = {
+            students: dbStudent
+        };
+        console.log(hbsObject);
+        res.render("index", hbsObject);
+        // res.json(dbBurger);
     });
-	// res.render('index');
+    // res.render('index');
 });
 
 
@@ -48,9 +48,10 @@ router.get('/register', function(req, res, next) {
 });
 
 router.post('/register', passport.authenticate('local-signup', {
-    successRedirect: '/student',
+    successRedirect: '/schedule',
     failureRedirect: '/register'
 }));
+
 
 router.get('/logout', function(req, res) {
     req.session.destroy(function(err) {
@@ -76,15 +77,15 @@ router.get('/schedule', function(req, res, next) {
     db.Tutor.findAll({
 
     }).then(function(dbTutor) {
-      // console.log(dbBurger);
-      // var burgers = dbBurger[0].dataValues;
-      // console.log(burgers);
-      var hbsObject = {
-      Tutors: dbTutor
-    };
-    console.log(hbsObject);
-    res.render("schedule", hbsObject);
-      // res.json(dbBurger);
+        // console.log(dbBurger);
+        // var burgers = dbBurger[0].dataValues;
+        // console.log(burgers);
+        var hbsObject = {
+            Tutors: dbTutor
+        };
+        console.log(hbsObject);
+        res.render("schedule", hbsObject);
+        // res.json(dbBurger);
     });
     // res.render('schedule');
 
@@ -134,20 +135,20 @@ router.get('/students', function(req, res) {
 //get all students
 router.get('/api/students', function(req, res, next) {
     db.Student.findAll(
-      // include: [db.Post]
+        // include: [db.Post]
     ).then(function(dbStudent) {
-      res.json(dbStudent);
+        res.json(dbStudent);
     });
 });
 //get students by id
 router.get('/api/students/:id', function(req, res, next) {
     db.Student.findAll({
         where: {
-        id: req.params.id
-      }
-      // include: [db.Post]
+            id: req.params.id
+        }
+        // include: [db.Post]
     }).then(function(dbStudent) {
-      res.json(dbStudent);
+        res.json(dbStudent);
     });
 });
 
@@ -163,9 +164,9 @@ router.get('/tutors', function(req, res, next) {
 //----tutors route--------------------//
 router.get('/api/tutors', function(req, res, next) {
     db.Tutor.findAll(
-      // include: [db.Post]
+        // include: [db.Post]
     ).then(function(dbTutor) {
-      res.json(dbTutor);
+        res.json(dbTutor);
     });
 });
 
@@ -173,10 +174,10 @@ router.get('/api/tutors', function(req, res, next) {
 router.get('/api/tutors/:id', function(req, res, next) {
     db.Tutor.findAll({
         where: {
-        id: req.params.id
-      }
+            id: req.params.id
+        }
     }).then(function(dbTutor) {
-      res.json(dbTutor);
+        res.json(dbTutor);
     });
 });
 
@@ -207,6 +208,3 @@ function isLoggedIn(req, res, next) {
 //--- login helper function --------------//
 
 module.exports = router;
-
-
-
