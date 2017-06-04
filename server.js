@@ -33,6 +33,7 @@ require('./config/passport/passport.js')(passport);
 // Syncing our sequelize models and then starting our express app
 
 db.sequelize.sync({}).then(function() {
+  logging:console.log,
   app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
   });

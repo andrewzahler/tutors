@@ -44,12 +44,3 @@ module.exports = function(sequelize, DataTypes) {
   return Student;
 
 };
-
-
-
-
-
-
-
-
-

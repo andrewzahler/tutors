@@ -1,4 +1,42 @@
 
+
+    <style type="text/css">
+    body {
+    display: flex;
+    min-height: 120vh;
+    flex-direction: column;
+    /*background-image: url("bg.jpeg");*/
+    }
+    main {
+    flex: 1 0 auto;
+    height:70%;
+    }
+    .logo{
+    margin-left: 10px;
+    }
+    .card-img{
+    width: 100px;
+    height: 300px;
+    }
+    img.profile-img { height: 36px; position: relative; top: 14px }
+    .glyphicon {  margin-bottom: 10px;margin-right: 10px;}
+
+    small {
+    display: block;
+    line-height: 1.428571429;
+    color: #999;
+    }
+    .well {
+    background: #f0ad4e;
+    }
+
+
+     #profileCard{ left: 200px height:100px !important;
+    {{! #subTable{position:relative;} }}
+
+    </style>
+
+
     <header>
       <nav class="animated slideInDown">
         <div class="nav-wrapper">
@@ -23,8 +61,8 @@
               <li><a id="userName" class="right dropdown-button white-text text-darken-1" href="#!" data-constrainwidth="false" data-beloworigin="true" data-activates="profileopt">JoeyB<img style="height:150px;" class="circle" src="https://avatars0.githubusercontent.com/u/24356249?v=3&s=40"></a></li>
             </ul>
             <div class="row">
-              
-              <div class="col s3">             
+
+              <div class="col s3">
                 <div>
                   {{#each user}}
                     {{user.id}}
@@ -32,7 +70,7 @@
                   {{/each}}
                 </div>
               </div>
-              
+
               <div class="col s3">
                 <div>
                   {{#each user}}
@@ -50,12 +88,12 @@
                   {{/each}}
                 </div>
               </div>
-              
+
             </div>
 
 
 
-            
+
             <div class="divider"></div>
             <div class="card-action">
               <a href="#">This is a link</a>
@@ -77,7 +115,7 @@
     <div class="container" id="subTable">
       <div class="avatarContent">
         <ul class="collection">
-          
+
           <li class="collection-item avatar">
             <i class="material-icons circle">folder</i>
             <span class="title">Title</span>
@@ -114,7 +152,7 @@
     </div>
 
 
-    
+
     </main>
     <footer class="page-footer animated slideInUp" id="foot">
       <div class="container">
