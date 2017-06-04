@@ -11,6 +11,7 @@ module.exports = function(passport, user) {
 
     //serialize user
     passport.serializeUser(function(user, done) {
+        console.log(user);
         done(null, user.id);
     });
 
@@ -44,6 +45,7 @@ module.exports = function(passport, user) {
                 }
             }).then(function(user) {
                 if (user) {
+                    console.log(user);
                     return done(null, false, {
                         message: 'That email is already taken'
                     });
@@ -69,24 +71,18 @@ module.exports = function(passport, user) {
                                 address: req.body.address,
                                 email: req.body.email,
                                 subjects: req.body.subjects,
-                                UserId: newUser.dataValues.id                               
+                                UserId: newUser.dataValues.id
                             };
                             // checks to see if new user is tutor or student
-                            if (req.body.uType == 1) {
-                                
-                                console.log('create student', secondaryData);
-                                // creates student
+                            if (newUser && req.body.uType == 1) {
                                 Student.create(secondaryData).then(function(req, res) {
-                                    console.log("new student body here", req.body);
                                     return done(null, newUser);
                                     // res.redirect('/student');
                                 });
 
-                            } else {
+                            } else if (newUser && req.body.uType == 2) {
                                 // creates tutor
-                                console.log('create tutor', secondaryData);
                                 Tutor.create(secondaryData).then(function(req, res) {
-                                    console.log("new tutor body here", req.body);
                                     return done(null, newUser);
                                     // res.redirect('/tutor');
                                 });
@@ -129,7 +125,7 @@ module.exports = function(passport, user) {
                         message: 'Incorrect password.'
                     });
                 }
-                console.log("sucess");
+                console.log("success");
                 var userinfo = user.get();
                 return done(null, userinfo);
 
