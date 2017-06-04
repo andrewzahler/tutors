@@ -33,57 +33,6 @@ router.post('/register', passport.authenticate('local-signup', {
     failureRedirect: '/register'
 }));
 
-//** ROUTE REPLACED BY ABOVE; REMAINDER OF THIS FUNCTION MOVED TO PASSPORT.JS **//
-// router.post('/register', function(req, res, next) {
-//     console.log(req.body);
-    // 
-    // db.User.create(req.body).then(function(dbUser) {
-    //     console.log("creating the user", user);
-    //     var user = {
-    //         type: req.body.value,
-    //         id: req.body.id,
-    //         name: req.body.name,
-    //         phone: req.body.phone,
-    //         address: req.body.address,
-    //         email: req.body.email,
-    //         subject: req.body.subjects
-    //     };
-
-    //     if (req.body.uType == 1) {
-    //         console.log('create student');
-    //         db.Student.create(user).then(function(req, res, next) {
-    //             console.log("new student body here", req.body);
-    //             res.redirect('/student');
-    //         });
-
-    //     } else {
-    //         console.log('create tutor');
-    //         db.Tutor.create(user).then(function(req, res, next) {
-    //             res.redirect('/tutor');
-    //         });
-    //     }
-    //     console.log('USER: ' + JSON.stringify(user));
-    //     //    res.redirect('/');
-    // });
-
-// });
-
-
-// router.get('/tutor/:id', function(req, res) {
-//     /* get tutor with id  from database find()*/
-// //    var user = orm.getTutor(id);
-
-
-//   res.render('tutors', {  });
-// });
-
-// router.get('/student/:id', function(req, res) {
-//     /* get tutor with id */
-//  //   var user = orm.getStudent(id);
-//   res.render('user.handlebars', {  });
-// });
-// ----register routes--------------------//
-
 router.get('/logout', function(req, res) {
     req.session.destroy(function(err) {
         res.redirect('/');
@@ -104,8 +53,25 @@ router.post('/login', passport.authenticate('local-signin', {
 //----schedule routes --------------------//
 // HTML route to render scheduling page
 router.get("/schedule", isLoggedIn, function(req, res) {
-    res.render('schedule');
+    db.User.findOne(
+        {
+            where: {
+                id: req.user.id
+            }
+        }
+        ).then(function(dbUser) {
+        var hbsObject = {
+            user: dbUser
+        };
+        console.log(hbsObject);
+        res.render("schedule", hbsObject);
+    });
 });
+
+// router.get("/schedule", isLoggedIn, function(req, res) {
+//     console.log(req.user.id);
+//     res.render('schedule');
+// });
 
 // API post route to create a new appointment
 router.post("/api/appointments", function(req, res) { // what does the' argument do?

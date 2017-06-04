@@ -15,7 +15,7 @@ module.exports = function(sequelize, DataTypes) {
         }
       },
     phone: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
       validate: {
         // expects phone numbers to be entered with no symbols, i.e. 2012222552

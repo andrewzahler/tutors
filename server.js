@@ -16,7 +16,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // For Passport
+
 app.use(session({ secret: 'keyboard cat', resave: true, saveUninitialized:true})); //session secret
+
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 
@@ -25,15 +27,13 @@ app.set("view engine", "handlebars");
 
 app.use("/", routes);
 
-//load passport strategies
+
 require('./config/passport/passport.js')(passport);
 
 // Syncing our sequelize models and then starting our express app
+
 db.sequelize.sync({}).then(function() {
   app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
   });
 });
-
-
-

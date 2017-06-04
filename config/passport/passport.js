@@ -11,6 +11,7 @@ module.exports = function(passport, user) {
 
     //serialize user
     passport.serializeUser(function(user, done) {
+        console.log(user);
         done(null, user.id);
     });
 
@@ -44,6 +45,7 @@ module.exports = function(passport, user) {
                 }
             }).then(function(user) {
                 if (user) {
+                    console.log(user);
                     return done(null, false, {
                         message: 'That email is already taken'
                     });
@@ -129,7 +131,7 @@ module.exports = function(passport, user) {
                         message: 'Incorrect password.'
                     });
                 }
-                console.log("sucess");
+                console.log("success");
                 var userinfo = user.get();
                 return done(null, userinfo);
 

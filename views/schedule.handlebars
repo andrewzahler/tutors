@@ -26,13 +26,9 @@
                         </select>
                         <label>Select a Subject</label>
                     </div>
-                    {{#if appointments.subject}}
                     <div class="input-field s12">
                         <select name="tutor">
                             <option value="" disabled selected>Choose your option</option>
-                            {{#each tutors}}
-                                <option value="{{this.TutorId}}" name="{{this.name}}">{{this.name}}</option>
-                            {{/each}}
                         </select>
                         <label>Select a Tutor</label>
                     </div>
@@ -79,7 +75,6 @@
                             <i class="material-icons right">send</i>
                         </button>
                     </div>
-                    {{/if}}
                     </form>
                 </div>
             </div>
