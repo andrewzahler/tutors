@@ -6,6 +6,7 @@ var db = require("../models");
 var passData = require("../config/passport/passport.js");
 
 
+
 // GET route for retrieving all students 
 router.get('/index', function(req, res, next) {
     db.Student.findAll({
@@ -17,11 +18,11 @@ router.get('/index', function(req, res, next) {
         var hbsObject = {
             students: dbStudent
         };
-        console.log(hbsObject);
+        // console.log(hbsObject);
         res.render("index", hbsObject);
         // res.json(dbBurger);
     });
-    // res.render('index');
+
 });
 router.get('/about', function(req, res) {
     res.render('about');
@@ -43,10 +44,13 @@ router.get('/login', function(req, res) {
     res.render('login');
 });
 
+
 // POST route that handles the account registration process; if user is successfully created, it redirects to the next page in the registration process, /profile; otherwise, it  
 router.post('/register', passport.authenticate('local-signup', {
+
     successRedirect: '/profile',
     failureRedirect: '/login'
+
 }));
 
 // GET route that handles the logout process 
@@ -64,6 +68,8 @@ router.post('/login', passport.authenticate('local-signin', {
 
 
 //----login and register routes--------------------//
+
+
 
 
 //---- profile routes -----//
@@ -96,31 +102,48 @@ router.post('/profile', function(req, res) {
     }
 });
 
-//---- profile routes -----//
 
+router.get("/schedule", isLoggedIn, function(req, res) {
+    // var hbsObject1, hbsObject2;
+    // var obj;
 
-//----schedule routes --------------------//
-// GET route to render scheduling page
-
-router.get('/schedule', function(req, res, next) {
-    db.Tutor.findAll({
-
-    }).then(function(dbTutor) {
-        // console.log(dbBurger);
-        // var burgers = dbBurger[0].dataValues;
-        // console.log(burgers);
-        var hbsObject = {
-            Tutors: dbTutor
+    db.User.findOne(
+        {
+            where: {
+                id: req.user.id
+            }
+        }
+        ).then(function(dbUser) {
+        hbsObject = {
+            user: dbUser
         };
         console.log(hbsObject);
         res.render("schedule", hbsObject);
-        // res.json(dbBurger);
     });
-    // res.render('schedule');
+        
+    // db.Tutor.findAll({
 
+    // }).then(function(dbTutor) {
+    //   // console.log(dbBurger);
+    //   // var burgers = dbBurger[0].dataValues;
+    //   // console.log(burgers);
+    //     hbsObject = {
+    //         Tutors: dbTutor
+    //     };
+   
+    //     // console.log(hbsObject);
+    //    res.render("schedule", hbsObject);
+    // });
+    // console.log(hbsObject1);
+    // console.log(hbsObject2);
+    // obj = {hbsObject1, hbsObject2};
+    // console.log(obj);
+    // res.render("schedule", obj);
 });
-// POST route to create a new appointment
+
 router.post("/api/appointments", function(req, res) { // what does the' argument do?
+    console.log(req.body);
+    var userid = req.body.StudentId
     db.Appointment.create(req.body).then(function(dbAppointment) {
 
         res.json(dbAppointment);

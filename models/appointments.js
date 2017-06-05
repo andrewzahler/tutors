@@ -30,14 +30,14 @@ module.exports = function(sequelize, DataTypes) {
             }
         },
         // can add this layer of options once MVP working
-        // hours: {
-        //     type: DataTypes.INTEGER,
-        //     allowNull: false,
-        //     validate: {
-        //         isDecimal: true,
-        //         notEmpty: true
-        //     }
-        // },
+        hours: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            validate: {
+                isDecimal: true,
+                notEmpty: true
+            }
+        },
         description: {
             type: DataTypes.STRING,
             allowNull: false,

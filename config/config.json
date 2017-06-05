@@ -1,7 +1,11 @@
 {
   "development": {
     "username": "root",
+<<<<<<< HEAD
     "password": "Oliver",
+=======
+    "password": "",
+>>>>>>> f49acf489d9689df6c318067023316a8aa46457f
     "database": "tutors_db",
     "host": "127.0.0.1",
     "dialect": "mysql"

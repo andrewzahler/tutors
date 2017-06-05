@@ -8,7 +8,11 @@ if (process.env.JAWSDB_URL) {
       logging:console.log,
     host: 'localhost',
     user: 'root',
+<<<<<<< HEAD
     password: 'Oliver',
+=======
+    password: '',
+>>>>>>> f49acf489d9689df6c318067023316a8aa46457f
     database: 'tutors_db'
 });
 }
