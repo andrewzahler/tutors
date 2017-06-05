@@ -9,15 +9,10 @@ module.exports = function(passport, user) {
     var Tutor = models.Tutor;
     // Passport works by using "strategies" for authentication; here we're requiring a simple username and password strategy 
     var LocalStrategy = require('passport-local').Strategy;
-<<<<<<< HEAD
-console.log("Fucking User here ",User);
-console.log("Fucking User here ",Tutor);
-console.log("Fucking User here ",Student);
     //serialize user
-=======
+
 
     //serialize user: this saves the User id in a session so we can retrieve it
->>>>>>> cdaf7bbf7fe80e9f63b3276cc089490cf1914691
     passport.serializeUser(function(user, done) {
         done(null, user.id);
     });
@@ -68,23 +63,16 @@ console.log("Fucking User here ",Student);
                         }
                         if (newUser) {
                              return done(null, newUser);
-<<<<<<< HEAD
 
                             // return done(null, newUser);
-=======
->>>>>>> cdaf7bbf7fe80e9f63b3276cc089490cf1914691
                         }
                     });
                 }
             });
         }
     ));
-<<<<<<< HEAD
-
     //LOCAL SIGNIN
-=======
     // This is the Passport strategy for logging in a user
->>>>>>> cdaf7bbf7fe80e9f63b3276cc089490cf1914691
     passport.use('local-signin', new LocalStrategy({
             // by default, local strategy uses username and password, we will override with email
             usernameField: 'email',
@@ -97,9 +85,6 @@ console.log("Fucking User here ",Student);
             var isValidPassword = function(userpass, password) {
                 return bCrypt.compareSync(password, userpass);
             };
-console.log("Fucking User here ",User);
-console.log("Fucking User here ",Tutor);
-console.log("Fucking User here ",Student);
  User.findOne({
                 where: {
                     email: email

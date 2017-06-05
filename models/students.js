@@ -1,3 +1,4 @@
+/*global  */
 module.exports = function(sequelize, DataTypes) {
 
   var Student = sequelize.define("Student", {
@@ -18,6 +19,7 @@ module.exports = function(sequelize, DataTypes) {
     username: {
       type:DataTypes.STRING,
       allowNull: false,
+      // defaultValue: false
     },
     phone: {
       type: DataTypes.STRING,
