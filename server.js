@@ -22,6 +22,7 @@ app.use(bodyParser.json());
 //     keys: ['secret1', 'secret2']
 // }));
 app.use(session({ secret: 'keyboard cat', resave: true, saveUninitialized:true})); //session secret
+
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 
@@ -40,6 +41,3 @@ db.sequelize.sync().then(function() {
     console.log("App listening on PORT " + PORT);
   });
 });
-
-
-

@@ -96,6 +96,11 @@ h4, h6 {
 	color: #ef5350;
 }
 
+.left {
+	border-right: 10px solid white;
+	margin-right: 10px;
+}
+
 .textDiv {
 	padding-top: 15px;
 	text-align: center;
@@ -107,6 +112,7 @@ h4, h6 {
 h1.super-header {
     line-height: 1;
     font-size: 60px
+
 }
 
 

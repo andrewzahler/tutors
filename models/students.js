@@ -1,6 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
 
-
   var Student = sequelize.define("Student", {
     id: {
       type: DataTypes.INTEGER,
@@ -8,32 +7,26 @@ module.exports = function(sequelize, DataTypes) {
       autoIncrement: true,
       primaryKey: true
       },
+    uType: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+      },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: {
-        is: ["^[a-z]+$",'i'],
-        }
       },
+    username: {
+      type:DataTypes.STRING,
+      allowNull: false,
+    },
     phone: {
       type: DataTypes.STRING,
       allowNull: false,
-      validate: {
-        // expects phone numbers to be entered with no symbols, i.e. 2012222552
-        len: [10]
-        }
       },
     address: {
       type: DataTypes.STRING,
       allowNull: false,
       },
-    email: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        isEmail: true
-        }
-      }
     }, {
       classMethods: {
         associate: function(models) {
@@ -51,12 +44,3 @@ module.exports = function(sequelize, DataTypes) {
   return Student;
 
 };
-
-
-
-
-
-
-
-
-

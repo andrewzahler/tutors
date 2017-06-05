@@ -1,21 +1,23 @@
 <header>
-    <nav class="animated slideInDown">
-        <div class="nav-wrapper">
-            <a href="#" class="brand-logo logo">Tutor Finder</a>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="sass.html">About</a></li>
-                <li><a href="badges.html">Contact</a></li>
-                <!-- <li><a href="collapsible.html">Sign In/Up</a></li> -->
-            </ul>
-        </div>
-    </nav>
+  <nav class="animated slideInDown">
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo logo">Tutor Finder</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="sass.html">About</a></li>
+        <li><a href="badges.html">Contact</a></li>
+        <li><a href="collapsible.html">Sign In/Up</a></li>
+      </ul>
+    </div>
+  </nav>
 </header>
 <main>
+
     <div class="container">
         <div class="row">
             <div class="col s6 offset-s3 formDiv">
                 <h4>Schedule a Tutoring Appointment</h4>
                 <div class="row">
+
                     <form id="appointment" action="/api/appointments" method="post" class="col s12" name="appointment">
                          <div class="input-field s12">
                             <select id="subjects-select" name="subject">
@@ -74,12 +76,11 @@
                                 <i class="material-icons right">send</i>
                             </button>
                         </div>
-                   
                     </form>
                 </div>
             </div>
         </div>
-    </div>
+      </div>
 </main>
 
 <h1 id="userId" data="{{this.id}}" value="{{user.id}}"></h1>
@@ -87,26 +88,29 @@
 <!-- <h1> {{user.UserId}}</h1> -->
 
 <footer class="page-footer animated slideInUp">
+
     <div class="container">
-        <div class="row">
-            <div class="col l6 s12">
-                <h5 class="white-text">Footer Content</h5>
-                <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
-            </div>
-            <div class="col l4 offset-l2 s12">
-                <h5 class="white-text">Links</h5>
-                <ul>
-                    <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
-                    <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
-                </ul>
-            </div>
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Footer Content</h5>
+          <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
         </div>
+        <div class="col l4 offset-l2 s12">
+          <h5 class="white-text">Links</h5>
+          <ul>
+            <li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>
+            <li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>
+          </ul>
+        </div>
+      </div>
     </div>
     <div class="footer-copyright">
-        <div class="container">
-            © 2017 Copyright Deloreans
-            <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
-        </div>
+      <div class="container">
+        © 2017 Copyright Deloreans
+        <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+      </div>
     </div>
+
 </footer>
 <script type="text/javascript" src="/assets/js/schedule.js"></script>
+
