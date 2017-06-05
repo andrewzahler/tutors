@@ -16,7 +16,7 @@ $(document).ready(function() {
     
     $(document).on("click", function(){
         $('.sub-main').addClass('animated rollOut');
-        $('.header-bg').addClass('animated rollOut');
+        // $('.header-bg').addClass('animated rollOut');
     });
     //Time Picker:
     // $('.timepicker').pickatime({
