@@ -3,6 +3,7 @@ var bCrypt = require('bcrypt-nodejs');
 var models = require("../../models");
 
 module.exports = function(passport, user) {
+    
 
     var User = models.User;
     var Student = models.Student;
@@ -60,7 +61,41 @@ module.exports = function(passport, user) {
                             return done(null, false);
                         }
                         if (newUser) {
+
+                            console.log(newUser);
+                            var secondaryData = {
+                                name: req.body.name,
+                                phone: req.body.phone,
+                                address: req.body.address,
+                                email: req.body.email,
+                                subjects: req.body.subjects,
+                                UserId: newUser.dataValues.id                               
+                            };
+                            
+                            // checks to see if new user is tutor or student
+                            if (req.body.uType == 1) {
+                                
+                                console.log('create student', secondaryData);
+                                // creates student
+                                Student.create(secondaryData).then(function(req, res) {
+                                    console.log("new student body here", req.body);
+                                    return done(null, newUser);
+                                    // res.redirect('/student');
+                                });
+
+                            } else {
+                                // creates tutor
+                                console.log('create tutor', secondaryData);
+                                Tutor.create(secondaryData).then(function(req, res) {
+                                    console.log("new tutor body here", req.body);
+                                    return done(null, newUser);
+                                    // res.redirect('/tutor');
+                                });
+                            }
+
+                            // return done(null, newUser);
                              return done(null, newUser);
+
                         }
                     });
                 }
@@ -110,3 +145,4 @@ module.exports = function(passport, user) {
         }
     ));
 };
+

@@ -8,6 +8,8 @@ var passport = require('passport');
 var session = require('express-session');
 var env = require('dotenv').load();
 var db = require("./models");
+var compression = require('compression');
+var cookieSession = require('cookie-session');
 
 // Serve static content for the app from the "public" directory in the application directory.
 app.use(express.static(process.cwd() + "/public"));
@@ -16,6 +18,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // For Passport
+// app.use(cookieSession({
+//     keys: ['secret1', 'secret2']
+// }));
 app.use(session({ secret: 'keyboard cat', resave: true, saveUninitialized:true})); //session secret
 
 app.use(passport.initialize());
@@ -31,7 +36,7 @@ require('./config/passport/passport.js')(passport);
 
 // Syncing our sequelize models and then starting our express app
 
-db.sequelize.sync({}).then(function() {
+db.sequelize.sync().then(function() {
   app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
   });
