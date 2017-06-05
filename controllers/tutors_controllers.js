@@ -177,10 +177,10 @@ router.get("/api/appointments/:id", function(req, res) {
 
 //----students route--------------------//
 
-router.get('/students', function(req, res) {
+// router.get('/students', function(req, res) {
 
-    res.render('students');
-});
+//     res.render('students');
+// });
 
 
 //----students route--------------------//
@@ -247,8 +247,41 @@ router.get("/api/tutors/:subject", function(req, res) {
     });
 });
 
-//----tutors route--------------------//
 
+router.get('/students', isLoggedIn, function(req, res, next) {
+    db.User.findOne(
+        {
+            where: {
+                id: req.user.id
+            }
+        }
+        ).then(function(dbUser) {
+            // console.log(dbUser);
+            db.Student.findOne(
+            {
+                where: {
+                    UserId: dbUser.dataValues.id
+                },
+                include: [db.Appointment]
+            }
+                ).then(function(dbStudent){
+
+                var hbsObject = {
+                    students: dbStudent
+                };
+                console.log(JSON.stringify(hbsObject));
+                res.render("students", hbsObject);
+
+        });
+
+        
+
+
+
+        
+    });
+    // res.render('students');
+});
 
 //--- login helper function for Passport --------------//
 // This lets us add the argument isLoggedIn to GET routes for rendering hbs pages to make them accessible only when a user is logged in; if user isn't logged in, it redirects to the login page
