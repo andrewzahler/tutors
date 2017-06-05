@@ -14,9 +14,6 @@ module.exports = function(sequelize, DataTypes) {
         name: {
             type: DataTypes.STRING,
             allowNull: false,
-            // validate: {
-            //     is: ["^[a-z]+$", 'i']
-            // }
         },
         username: {
             type: DataTypes.STRING,
@@ -25,10 +22,6 @@ module.exports = function(sequelize, DataTypes) {
         phone: {
             type: DataTypes.STRING,
             allowNull: false,
-            // validate: {
-            //     // expects phone numbers to be entered with no symbols, i.e. 2012222552
-            //     len: [10]
-            // }
         },
         address: {
             type: DataTypes.STRING,

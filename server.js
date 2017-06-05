@@ -16,7 +16,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 // For Passport
-
 app.use(session({ secret: 'keyboard cat', resave: true, saveUninitialized:true})); //session secret
 
 app.use(passport.initialize());
