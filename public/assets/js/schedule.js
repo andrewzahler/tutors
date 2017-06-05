@@ -9,6 +9,7 @@ $(document).ready(function(){
   var selectedHours = $("#hours-select");
   var selectedDesc = $("#description");
   var appointmentForm = $("#appointment");
+  var userId = $("#userId");
   
  
   var url = window.location.search;
@@ -22,6 +23,7 @@ $(document).ready(function(){
     $('.modal').modal();
 
     $('.datepicker').pickadate({
+        format: 'yyyy/mm/dd',
         selectMonths: true, // Creates a dropdown to control month
         selectYears: 15 // Creates a dropdown of 15 years to control year
 
@@ -65,20 +67,45 @@ $(document).ready(function(){
         });
     });
 
+    var studentIdWeWant;
+      $.get("/api/students", function(students) {
+        $.each(students, function(i, item) {
+          
+            console.log(item);
+            if (item.UserId === parseInt(userId.attr("value"))) {
+              studentIdWeWant = item.id;
+
+            }
+            console.log("first", studentIdWeWant);
+        });
+      });
+      
     $(appointmentForm).on("submit", function(event){
       event.preventDefault();
+
       console.log(selectedTutor.data("id"));
       console.log(selectedSubject.val(), selectedTutor.val(), selectedDate.val(), 
       selectedTime.val(), selectedHours.val(), selectedDesc.val());
 
-      // var newApp = {
-      //   subject: selectedSubject.val().trim(),
-      //   date: selectedDate.val(),
-      //   time: selectedTime.val().trim(),
-      //   hours: selectedHours.val().trim(),
-      //   description: selectedDesc.val().trim(),
-      //   TutorId: selectedTutor.data("id"),
-      //   StudentId: 
+      console.log(userId.attr("value"));
+      
+      console.log("second",studentIdWeWant);
+      var newApp = {
+        subject: selectedSubject.val().trim(),
+        date: selectedDate.val(),
+        time: selectedTime.val().trim(),
+        hours: selectedHours.val().trim(),
+        description: selectedDesc.val().trim(),
+        TutorId: selectedTutor.data("id"),
+        StudentId: studentIdWeWant
+      }
+
+      console.log(newApp);
+          // Submits a new post and brings user to blog page upon completion
+      // function submitPost(post) {
+        $.post("/api/appointments", newApp, function() {
+          window.location.href = "/index";
+        });
       // }
 
 

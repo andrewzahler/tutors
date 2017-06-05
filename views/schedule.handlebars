@@ -19,18 +19,20 @@
                     <form id="appointment" action="/api/appointments" method="post" class="col s12" name="appointment">
                          <div class="input-field s12">
                             <select id="subjects-select" name="subject">
-                                <option value="" disabled selected>Choose your option</option>
+                                <option value="" disabled selected>Choose your subject</option>
 
                                 <option value="Math" name="math">Math</option>
                                 <option value="Reading" name="reading">Reading</option>
                                 <option value="Web Development" name="webDevelopment">Web Development</option>
-
+                     
                             </select>
                             <label>Select a Subject</label>
                         </div>
                         <div class="input-field s12">
                             <select id="tutors-select" name="tutor">
                                 <option value="" disabled selected>Choose your Tutor</option>
+                                
+                            
                             </select>
                             <label>Select a Tutor</label>
                         </div>
@@ -40,7 +42,7 @@
                         </div>
                         <div class="input-field s12">
                             <select id="time-select" name="time">
-                                <option value="" disabled selected>Choose your option</option>
+                                <option value="" disabled selected>Choose your Best Time</option>
                                
                                 <option value="09:00">09:00</option>
                                 <option value="10:00">10:00</option>
@@ -52,9 +54,6 @@
                                 <option value="16:00">16:00</option>
                                 <option value="17:00">17:00</option>
                                 <option value="18:00">18:00</option>
-                                <option value="19:00">19:00</option>
-                                <option value="20:00">20:00</option>
-                                <option value="21:00">21:00</option>
                             </select>
                             <label>Select a Time Slot</label>
                          <div class="input-field s12">
@@ -83,6 +82,9 @@
     </div>
 </main>
 
+<h1 id="userId" data="{{this.id}}" value="{{user.id}}"></h1>
+<!-- <h1> {{Tutors.name}}</h1> -->
+<!-- <h1> {{user.UserId}}</h1> -->
 
 <footer class="page-footer animated slideInUp">
     <div class="container">
@@ -107,3 +109,4 @@
         </div>
     </div>
 </footer>
+<script type="text/javascript" src="/assets/js/schedule.js"></script>

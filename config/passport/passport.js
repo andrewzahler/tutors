@@ -3,6 +3,7 @@ var bCrypt = require('bcrypt-nodejs');
 var models = require("../../models");
 
 module.exports = function(passport, user) {
+    
 
     var User = models.User;
     var Student = models.Student;
@@ -71,6 +72,7 @@ module.exports = function(passport, user) {
                                 subjects: req.body.subjects,
                                 UserId: newUser.dataValues.id                               
                             };
+                            
                             // checks to see if new user is tutor or student
                             if (req.body.uType == 1) {
                                 
@@ -141,4 +143,5 @@ module.exports = function(passport, user) {
             });
         }
     ));
+
 };

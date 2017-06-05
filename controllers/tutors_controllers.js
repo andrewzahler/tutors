@@ -8,20 +8,20 @@ var passData = require("../config/passport/passport.js");
 
 
 router.get('/index', function(req, res, next){
-	db.Student.findAll({
+	// db.Student.findAll({
 
-    }).then(function(dbStudent) {
-      // console.log(dbBurger);
-      // var burgers = dbBurger[0].dataValues;
-      // console.log(burgers);
-      var hbsObject = {
-      students: dbStudent
-    };
-    console.log(hbsObject);
-    res.render("index", hbsObject);
-      // res.json(dbBurger);
-    });
-	// res.render('index');
+ //    }).then(function(dbStudent) {
+ //      // console.log(dbBurger);
+ //      // var burgers = dbBurger[0].dataValues;
+ //      // console.log(burgers);
+ //      var hbsObject = {
+ //      students: dbStudent
+ //    };
+ //    console.log(hbsObject);
+ //    res.render("index", hbsObject);
+ //      // res.json(dbBurger);
+ //    });
+	   res.render('index');
 });
 
 
@@ -48,7 +48,7 @@ router.get('/register', function(req, res, next) {
 });
 
 router.post('/register', passport.authenticate('local-signup', {
-    successRedirect: '/student',
+    successRedirect: '/index',
     failureRedirect: '/register'
 }));
 
@@ -118,30 +118,75 @@ router.post('/login', passport.authenticate('local-signin', {
 
 //----login and register routes--------------------//
 
-
+router.get('/schedule/:?', function(req, res, next){
+    console.log(req.user.id);
+    return passData.getUserId();
+});
 
 //----schedule routes --------------------//
 // HTML route to render scheduling page
 
-router.get('/schedule', function(req, res, next) {
-    db.Tutor.findAll({
+// router.get('/schedule', function(req, res, next) {
+//     db.Tutor.findAll({
 
-    }).then(function(dbTutor) {
-      // console.log(dbBurger);
-      // var burgers = dbBurger[0].dataValues;
-      // console.log(burgers);
-      var hbsObject = {
-      Tutors: dbTutor
-    };
-    console.log(hbsObject);
-    res.render("schedule", hbsObject);
-      // res.json(dbBurger);
+//     }).then(function(dbTutor) {
+//       // console.log(dbBurger);
+//       // var burgers = dbBurger[0].dataValues;
+//       // console.log(burgers);
+//       var hbsObject = {
+//       Tutors: dbTutor
+//     };
+//     console.log(hbsObject);
+//     res.render("schedule", hbsObject);
+//       // res.json(dbBurger);
+//     });
+//     // res.render('schedule');
+
+// });
+
+router.get("/schedule", isLoggedIn, function(req, res) {
+    // var hbsObject1, hbsObject2;
+    // var obj;
+
+    db.User.findOne(
+        {
+            where: {
+                id: req.user.id
+            }
+        }
+        ).then(function(dbUser) {
+        hbsObject = {
+            user: dbUser
+        };
+        console.log(hbsObject);
+        res.render("schedule", hbsObject);
     });
-    // res.render('schedule');
+        
+    // db.Tutor.findAll({
 
+    // }).then(function(dbTutor) {
+    //   // console.log(dbBurger);
+    //   // var burgers = dbBurger[0].dataValues;
+    //   // console.log(burgers);
+    //     hbsObject = {
+    //         Tutors: dbTutor
+    //     };
+   
+    //     // console.log(hbsObject);
+    //    res.render("schedule", hbsObject);
+    // });
+    // console.log(hbsObject1);
+    // console.log(hbsObject2);
+    // obj = {hbsObject1, hbsObject2};
+    // console.log(obj);
+    // res.render("schedule", obj);
 });
+
+
 // API post route to create a new appointment
 router.post("/api/appointments", function(req, res) { // what does the' argument do?
+    console.log(req.body);
+    var userid = req.body.StudentId
     db.Appointment.create(req.body).then(function(dbAppointment) {
 
         res.json(dbAppointment);
