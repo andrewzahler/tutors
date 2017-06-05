@@ -178,17 +178,17 @@ router.get("/api/appointments/:id", function(req, res) {
 
 
 //----students route--------------------//
-<<<<<<< HEAD
+
 router.get('/students', function(req, res) {
     res.render('students');
 });
-=======
+
 
 // router.get('/students', function(req, res) {
 
 //     res.render('students');
 // });
->>>>>>> d96663eee86f47fce6ac86d73249e735c14b6c0b
+
 
 
 //----students route--------------------//
