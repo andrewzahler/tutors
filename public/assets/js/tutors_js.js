@@ -18,13 +18,9 @@ $(document).ready(function() {
         $('.sub-main').addClass('animated rollOut');
         // $('.header-bg').addClass('animated rollOut');
     });
-    //Time Picker:
-    // $('.timepicker').pickatime({
-    //     default: 'now',
-    //     twelvehour: false, // change to 12 hour AM/PM clock from 24 hour
-    //     donetext: 'OK',
-    //   autoclose: false,
-    //   vibrate: true // vibrate the device when dragging clock hand
-    // });
+
+    // var animationName = "";
+    // var animationEnd = "";
+    // $("#student-header1").addClass(animationName);
 
 });
