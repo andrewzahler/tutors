@@ -33,6 +33,7 @@
     </style>
 
 
+<<<<<<< HEAD
 
 <header>
   
@@ -86,26 +87,40 @@
                 </div>
               </div>
 
+=======
+    <header>
+      <nav class="animated slideInDown">
+        <div class="nav-wrapper">
+          <a href="#" class="brand-logo logo">Tutor Finder</a>
+          <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li><a href="sass.html">About</a></li>
+            <li><a href="badges.html">Contact</a></li>
+            <li><a href="collapsible.html">Sign In/Up</a></li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+    <main>
+    <div class="container">
+      <div class="row">
+        <div class="col s12">
+          <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+              <span class="card-title">Welcome {{students.name}}</span>
+              <!-- <p>I am a very simple card. I am good at containing small bits of information.
+              I am convenient because I require little markup to use effectively.</p> -->
+>>>>>>> d96663eee86f47fce6ac86d73249e735c14b6c0b
             </div>
-
-
-
-
-            <div class="divider"></div>
-            <div class="card-action">
-              <a href="#">This is a link</a>
-              <a href="#">This is a link</a>
-              <ul id="profileopt" class="dropdown-content">
-                <li><a href="#!">My profile</a></li>
-                <li><a href="#!">Settings</a></li>
-                <li><a href="#!">Achievements</a></li>
-                <li class="divider"></li>
-                <li><a href="#!">Logout</a></li>
-              </ul>
+            <div style="overflow: auto" class="card-action">
+              <img style="float: left; margin-right: 30px;" src="http://lorempixel.com/200/200/cats" />
+              <p>Name:{{students.name}} </p>
+              <p>Phone: {{students.phone}}</p>
+              <p>Address:{{students.address}}</p>
             </div>
           </div>
         </div>
       </div>
+<<<<<<< HEAD
     </div>
 
 
@@ -198,6 +213,40 @@
 {{! ======= }}
 
 {{! >>>>>>> cdaf7bbf7fe80e9f63b3276cc089490cf1914691 }}
+=======
+      <div class="row">
+        <div class="col s12 header-bg">
+          <h4 class="header-txt">My Appointments</h4>
+          <div class="appointments">
+            <table>
+              <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Duration</th>
+                    <th>Subject</th>
+                    <th>Tutor</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr>
+                 {{#each students.Appointments}}
+                    <td>{{this.date}}</td>
+                    <td>{{this.time}}</td>
+                     <td>{{this.hours}}</td>
+                     <td>{{this.subject}}</td>
+                  {{/each}}
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+
+>>>>>>> d96663eee86f47fce6ac86d73249e735c14b6c0b
     </main>
     <footer class="page-footer animated slideInUp" id="foot">
       <div class="container">
