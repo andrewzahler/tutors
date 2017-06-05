@@ -144,4 +144,54 @@ h1.super-header {
 	background-color: #ef5350;
 }
 
+.appointments-header{
+	margin-top: 0px;
+	margin-bottom: 0px;
+	padding: 20px;
+	background: #e57373;
+	color: #fff;
+	/*border: 2px solid #ef5350;*/
+}
+
+.appointments{
+	padding: 20px;
+	background: rgba(255, 235, 238, 1);
+	color: #ef5350;
+}
+
+.card-headers{
+	display: block; 
+	background-color: #e57373; 
+	color: #fff;
+	padding: 5px;
+	margin-left: 200px
+	/*-webkit-animation-duration: 1s;
+	-webkit-animation-delay: 2s;
+	-webkit-animation-iteration-count: 1;*/
+}
+
+#card-header1{
+	/*-webkit-animation-duration: 1s;*/
+	/*-webkit-animation-delay: 2s;*/
+	/*-webkit-animation-iteration-count: 1;*/
+}
+#card-header2{
+	/*-webkit-animation-duration: 1s;*/
+	-webkit-animation-delay: 1s;
+	/*-webkit-animation-iteration-count: 1;*/
+}
+#card-header3{
+	/*-webkit-animation-duration: 1s;*/
+	-webkit-animation-delay: 2s;
+	/*-webkit-animation-iteration-count: 1;*/
+}
+
+#student-appoinments{
+	-webkit-animation-delay: 3s;
+}
+
+.card-title{
+	color: #fff;
+	
+}
 
