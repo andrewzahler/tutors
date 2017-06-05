@@ -50,108 +50,55 @@
       </nav>
     </header>
     <main>
-
-
-
-    <div class="row" id="profileCard">
-      <div class="col s12 m10">
-        <div class="card blue-grey darken-1">
-          <div class="card-content white-text">
-            <span class="card-title">Student-info</span><ul>
-              <li><a id="userName" class="right dropdown-button white-text text-darken-1" href="#!" data-constrainwidth="false" data-beloworigin="true" data-activates="profileopt">JoeyB<img style="height:150px;" class="circle" src="https://avatars0.githubusercontent.com/u/24356249?v=3&s=40"></a></li>
-            </ul>
-            <div class="row">
-
-              <div class="col s3">
-                <div>
-                  {{#each user}}
-                    {{user.id}}
-                    {{this.email}}
-                  {{/each}}
-                </div>
-              </div>
-
-              <div class="col s3">
-                <div>
-                  {{#each user}}
-                    {{user.id}}
-                    {{this.email}}
-                  {{/each}}
-                </div>
-              </div>
-
-              <div class="col s3">
-                <div>
-                  {{#each item}}
-                    {{user.id}}
-                    {{this.email}}
-                  {{/each}}
-                </div>
-              </div>
-
+    <div class="container">
+      <div class="row">
+        <div class="col s12">
+          <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+              <span class="card-title">Welcome {{students.name}}</span>
+              <!-- <p>I am a very simple card. I am good at containing small bits of information.
+              I am convenient because I require little markup to use effectively.</p> -->
             </div>
-
-
-
-
-            <div class="divider"></div>
-            <div class="card-action">
-              <a href="#">This is a link</a>
-              <a href="#">This is a link</a>
-              <ul id="profileopt" class="dropdown-content">
-                <li><a href="#!">My profile</a></li>
-                <li><a href="#!">Settings</a></li>
-                <li><a href="#!">Achievements</a></li>
-                <li class="divider"></li>
-                <li><a href="#!">Logout</a></li>
-              </ul>
+            <div style="overflow: auto" class="card-action">
+              <img style="float: left; margin-right: 30px;" src="http://lorempixel.com/200/200/cats" />
+              <p>Name:{{students.name}} </p>
+              <p>Phone: {{students.phone}}</p>
+              <p>Address:{{students.address}}</p>
             </div>
           </div>
         </div>
       </div>
-    </div>
+      <div class="row">
+        <div class="col s12 header-bg">
+          <h4 class="header-txt">My Appointments</h4>
+          <div class="appointments">
+            <table>
+              <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Duration</th>
+                    <th>Subject</th>
+                    <th>Tutor</th>
+                </tr>
+              </thead>
 
-
-    <div class="container" id="subTable">
-      <div class="avatarContent">
-        <ul class="collection">
-
-          <li class="collection-item avatar">
-            <i class="material-icons circle">folder</i>
-            <span class="title">Title</span>
-            <p>First Line <br>
-              Second Line
-            </p>
-            <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-          </li>
-
-
-          <li class="collection-item avatar">
-            <i class="material-icons circle green">insert_chart</i>
-            <span class="title">Title</span>
-            <p>First Line <br>
-              Second Line
-            </p>
-            <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-          </li>
-
-
-          <li class="collection-item avatar">
-            <i class="material-icons circle red">play_arrow</i>
-            <span class="title">Title</span>
-            <p>First Line <br>
-              Second Line
-            </p>
-            <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
-          </li>
-
-
-
-        </ul>
+              <tbody>
+                <tr>
+                 {{#each students.Appointments}}
+                    <td>{{this.date}}</td>
+                    <td>{{this.time}}</td>
+                     <td>{{this.hours}}</td>
+                     <td>{{this.subject}}</td>
+                  {{/each}}
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        
       </div>
     </div>
-
-
 
     </main>
     <footer class="page-footer animated slideInUp" id="foot">
