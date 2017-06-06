@@ -6,9 +6,9 @@
         <div class="nav-wrapper">
           <a href="#" class="brand-logo logo">Tutor Finder</a>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="sass.html">About</a></li>
-            <li><a href="badges.html">Contact</a></li>
-            <li><a href="collapsible.html">Sign In/Up</a></li>
+            <li><a href="/students-home">Home</a></li>
+            <li><a href="/schedule">Book</a></li>
+            <li><a href="/logout">Sign Out/{{students.name}}</a></li>
           </ul>
         </div>
       </nav>
@@ -49,14 +49,17 @@
               </thead>
 
               <tbody>
+              {{#each students.Appointments}}
                 <tr>
-                 {{#each students.Appointments}}
+                 
                     <td>{{this.date}}</td>
                     <td>{{this.time}}</td>
                      <td>{{this.hours}}</td>
                      <td>{{this.subject}}</td>
-                  {{/each}}
+                     </b>
+                  
                 </tr>
+                {{/each}}
               </tbody>
             </table>
           </div>

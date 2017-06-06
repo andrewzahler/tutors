@@ -14,10 +14,10 @@ $('.body').vegas({
 
 $(document).ready(function() {
     
-    $(document).on("click", function(){
-        $('.sub-main').addClass('animated rollOut');
+    // $(document).on("click", function(){
+        // $('.sub-main').addClass('animated rollOut');
         // $('.header-bg').addClass('animated rollOut');
-    });
+    // });
 
     // var animationName = "";
     // var animationEnd = "";
