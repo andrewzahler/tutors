@@ -10,8 +10,6 @@ module.exports = function(passport, user) {
     var Tutor = models.Tutor;
     // Passport works by using "strategies" for authentication; here we're requiring a simple username and password strategy 
     var LocalStrategy = require('passport-local').Strategy;
-    //serialize user
-
 
     //serialize user: this saves the User id in a session so we can retrieve it
     passport.serializeUser(function(user, done) {
@@ -98,17 +96,12 @@ module.exports = function(passport, user) {
                             // return done(null, newUser);
                              return done(null, newUser);
 
-<<<<<<< HEAD
-                            // return done(null, newUser);
-=======
->>>>>>> f49acf489d9689df6c318067023316a8aa46457f
                         }
                     });
                 }
             });
         }
     ));
-    //LOCAL SIGNIN
     // This is the Passport strategy for logging in a user
     passport.use('local-signin', new LocalStrategy({
             // by default, local strategy uses username and password, we will override with email
@@ -122,7 +115,7 @@ module.exports = function(passport, user) {
             var isValidPassword = function(userpass, password) {
                 return bCrypt.compareSync(password, userpass);
             };
- User.findOne({
+            User.findOne({
                 where: {
                     email: email
                 }

@@ -19,7 +19,6 @@ module.exports = function(sequelize, DataTypes) {
 
             type: DataTypes.STRING,
             allowNull: false,
-        //  defaultValue: false
         },
         phone: {
             type: DataTypes.STRING,
