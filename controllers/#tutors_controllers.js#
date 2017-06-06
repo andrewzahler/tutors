@@ -33,6 +33,8 @@ router.get('/', function(req, res) {
     res.render('index');
 });
 //----about page route--------------------//
+
+
 //----about page route--------------------//
 // GET route to render home page
 router.get('/about', function(req, res) {
