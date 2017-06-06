@@ -59,10 +59,32 @@ router.get('/logout', function(req, res) {
 });
 
 // POST route that handles the login process 
-router.post('/login', passport.authenticate('local-signin', {
-    successRedirect: '/index',
-    failureRedirect: '/login'
-}));
+router.post('/login', passport.authenticate('local-signin', { failureRedirect: '/login' }),
+  function(req, res) {
+    // console.log(req);
+
+    db.User.findOne(
+        {
+            where: {
+                id: req.user.id
+            }, 
+            include: [db.Student, db.Tutor]
+        }
+        ).then(function(dbUser) {
+            // console.log(dbUser);
+            // console.log(dbUser);
+            if(dbUser.Student !== null){
+                res.redirect('/students-home');
+            }
+            if(dbUser.Tutor !== null){
+                res.redirect('/tutors-home');
+            }
+ 
+    });
+
+
+    
+  });
 
 
 //----login and register routes--------------------//
@@ -109,7 +131,7 @@ router.get("/schedule", isLoggedIn, function(req, res) {
         {
             where: {
                 id: req.user.id
-            }
+            }, include: [db.Student, db.Tutor]
         }
         ).then(function(dbUser) {
         hbsObject = {
@@ -118,36 +140,18 @@ router.get("/schedule", isLoggedIn, function(req, res) {
         console.log(hbsObject);
         res.render("schedule", hbsObject);
     });
-        
-    // db.Tutor.findAll({
-
-    // }).then(function(dbTutor) {
-    //   // console.log(dbBurger);
-    //   // var burgers = dbBurger[0].dataValues;
-    //   // console.log(burgers);
-    //     hbsObject = {
-    //         Tutors: dbTutor
-    //     };
    
-    //     // console.log(hbsObject);
-    //    res.render("schedule", hbsObject);
-    // });
-    // console.log(hbsObject1);
-    // console.log(hbsObject2);
-    // obj = {hbsObject1, hbsObject2};
-    // console.log(obj);
-    // res.render("schedule", obj);
 });
 
 router.post("/api/appointments", function(req, res) { // what does the' argument do?
-    console.log(req.body);
+    // console.log(req.body);
     var userid = req.body.StudentId
     db.Appointment.create(req.body).then(function(dbAppointment) {
 
         res.json(dbAppointment);
         // res.render("/");
     });
-    console.log(req.body);
+    // console.log(req.body);
 });
 
 // GET get route to find all appointments with left outer join including three models
@@ -209,9 +213,39 @@ router.get('/api/students/:id', function(req, res, next) {
 
 //----tutors route--------------------//
 
-router.get('/tutors', function(req, res, next) {
-    res.render('tutors', req.body);
-});
+// router.get('/tutors', function(req, res, next) {
+//     db.User.findOne(
+//         {
+//             where: {
+//                 id: req.user.id
+//             }
+//         }
+//         ).then(function(dbUser) {
+//             // console.log(dbUser);
+//             db.Tutor.findOne(
+//             {
+//                 where: {
+//                     UserId: dbUser.dataValues.id
+//                 },
+//                 include: [db.Appointment]
+//             }
+//                 ).then(function(dbTutor){
+
+//                 var hbsObject = {
+//                     tutors: dbTutor
+//                 };
+//                 console.log(JSON.stringify(hbsObject));
+//                 res.render("tutors", hbsObject);
+
+//         });
+
+        
+
+
+
+        
+//     });
+// });
 
 router.get('/api/tutors', function(req, res, next) {
     db.Tutor.findAll(
@@ -269,7 +303,7 @@ router.get('/students', isLoggedIn, function(req, res, next) {
                 var hbsObject = {
                     students: dbStudent
                 };
-                console.log(JSON.stringify(hbsObject));
+                // console.log(JSON.stringify(hbsObject));
                 res.render("students", hbsObject);
 
         });
@@ -282,6 +316,102 @@ router.get('/students', isLoggedIn, function(req, res, next) {
     });
     // res.render('students');
 });
+
+router.get('/students-home', function(req, res) {
+    db.User.findOne(
+        {
+            where: {
+                id: req.user.id
+            }
+        }
+        ).then(function(dbUser) {
+            // console.log(dbUser);
+            db.Student.findOne(
+            {
+                where: {
+                    UserId: dbUser.dataValues.id
+                }
+            }
+                ).then(function(dbStudent){
+
+                var hbsObject = {
+                    students: dbStudent
+                };
+                // console.log(hbsObject);
+                res.render('students-home');
+
+        });
+ 
+    });
+    
+});
+
+router.get('/tutors-home', function(req, res) {
+    db.User.findOne(
+        {
+            where: {
+                id: req.user.id
+            }
+        }
+        ).then(function(dbUser) {
+            // console.log(dbUser);
+            db.Tutor.findOne(
+            {
+                where: {
+                    UserId: dbUser.dataValues.id
+                }
+            }
+                ).then(function(dbTutor){
+
+                var hbsObject = {
+                    tutors: dbTutor
+                };
+                // console.log(hbsObject);
+                res.render('tutors-home');
+
+        });
+ 
+    });
+    
+});
+
+router.get('/tutors', isLoggedIn, function(req, res, next) {
+    db.User.findOne(
+        {
+            where: {
+                id: req.user.id
+            }
+        }
+        ).then(function(dbUser) {
+            // console.log(dbUser);
+            db.Tutor.findOne(
+            {
+                where: {
+                    UserId: dbUser.dataValues.id
+                },
+                include: [db.Appointment]
+            }
+                ).then(function(dbTutor){
+
+                var hbsObject = {
+                    tutors: dbTutor
+                };
+                // console.log(JSON.stringify(hbsObject));
+                res.render("tutors", hbsObject);
+
+        });
+
+        
+
+
+
+        
+    });
+    // res.render('students');
+});
+
+
+
 
 //--- login helper function for Passport --------------//
 // This lets us add the argument isLoggedIn to GET routes for rendering hbs pages to make them accessible only when a user is logged in; if user isn't logged in, it redirects to the login page

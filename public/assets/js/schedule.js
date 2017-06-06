@@ -104,7 +104,7 @@ $(document).ready(function(){
           // Submits a new post and brings user to blog page upon completion
       // function submitPost(post) {
         $.post("/api/appointments", newApp, function() {
-          window.location.href = "/index";
+          window.location.href = "/students";
         });
       // }
 

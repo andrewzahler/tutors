@@ -182,16 +182,41 @@ h1.super-header {
 }
 #card-header3{
 	/*-webkit-animation-duration: 1s;*/
-	-webkit-animation-delay: 2s;
+	-webkit-animation-delay: 1.5s;
 	/*-webkit-animation-iteration-count: 1;*/
 }
 
 #student-appoinments{
-	-webkit-animation-delay: 3s;
+	-webkit-animation-delay: 2s;
 }
 
 .card-title{
 	color: #fff;
-	
+
 }
+
+#sub-main1{
+	/*-webkit-animation-duration: 1s;*/
+	-webkit-animation-delay: 1s;
+	-webkit-animation-iteration-count: 1;
+}
+
+#sub-main2{
+	/*-webkit-animation-duration: 1s;*/
+	-webkit-animation-delay: 3s;
+	-webkit-animation-iteration-count: 1;
+}
+
+#sub-main3{
+	/*-webkit-animation-duration: 1s;*/
+	-webkit-animation-delay: 5s;
+	-webkit-animation-iteration-count: 1;
+}
+
+
+
+
+
+
+
 
