@@ -12,17 +12,12 @@ router.get('/index', function(req, res, next) {
     db.Student.findAll({
 
     }).then(function(dbStudent) {
-        // console.log(dbBurger);
-        // var burgers = dbBurger[0].dataValues;
-        // console.log(burgers);
         var hbsObject = {
             students: dbStudent
         };
         // console.log(hbsObject);
         res.render("index", hbsObject);
-        // res.json(dbBurger);
     });
-
 });
 
 
@@ -32,7 +27,7 @@ router.get('/index', function(req, res, next) {
 router.get('/', function(req, res) {
     res.render('index');
 });
-//----about page route--------------------//
+
 //----about page route--------------------//
 // GET route to render home page
 router.get('/about', function(req, res) {
@@ -87,24 +82,17 @@ router.post('/login', passport.authenticate('local-signin', { failureRedirect: '
             }
  
     });
-
-
-    
   });
-
-
 //----login and register routes--------------------//
 
 
 
 
 //---- profile routes -----//
-
 // GET route for loading the profile page, where registered users fill out more profile information
 router.get('/profile', isLoggedIn, function(req, res, next) {
     res.render('profile');
 });
-
 // POST route that creates either a Student or a Tutor in the database based on user's entry
 router.post('/profile', function(req, res) {
     var userData = {
@@ -132,7 +120,6 @@ router.post('/profile', function(req, res) {
 router.get("/schedule", isLoggedIn, function(req, res) {
     // var hbsObject1, hbsObject2;
     // var obj;
-
     db.User.findOne(
         {
             where: {
@@ -153,12 +140,12 @@ router.post("/api/appointments", function(req, res) { // what does the' argument
     // console.log(req.body);
     var userid = req.body.StudentId
     db.Appointment.create(req.body).then(function(dbAppointment) {
-
         res.json(dbAppointment);
         // res.render("/");
     });
     // console.log(req.body);
 });
+
 
 // GET get route to find all appointments with left outer join including three models
 router.get("/api/appointments", function(req, res) {
@@ -181,14 +168,8 @@ router.get("/api/appointments/:id", function(req, res) {
     });
 });
 
-//----schedule route--------------------//
-
-
-
 //----students route--------------------//
-
 // router.get('/students', function(req, res) {
-
 //     res.render('students');
 // });
 
@@ -218,7 +199,6 @@ router.get('/api/students/:id', function(req, res, next) {
 
 
 //----tutors route--------------------//
-
 // router.get('/tutors', function(req, res, next) {
 //     db.User.findOne(
 //         {
@@ -236,22 +216,15 @@ router.get('/api/students/:id', function(req, res, next) {
 //                 include: [db.Appointment]
 //             }
 //                 ).then(function(dbTutor){
-
 //                 var hbsObject = {
 //                     tutors: dbTutor
 //                 };
 //                 console.log(JSON.stringify(hbsObject));
 //                 res.render("tutors", hbsObject);
-
 //         });
-
-        
-
-
-
-        
 //     });
 // });
+
 
 router.get('/api/tutors', function(req, res, next) {
     db.Tutor.findAll(
@@ -278,7 +251,7 @@ router.get("/api/tutors/:subject", function(req, res) {
     db.Tutor.findAll({
         where: {
             subject: req.params.subject
-        },
+        }
     }).then(function(dbSubjectTutors) {
         var hbsObject = {
             tutors: dbSubjectTutors
@@ -311,14 +284,7 @@ router.get('/students', isLoggedIn, function(req, res, next) {
                 };
                 // console.log(JSON.stringify(hbsObject));
                 res.render("students", hbsObject);
-
         });
-
-        
-
-
-
-        
     });
     // res.render('students');
 });
@@ -345,12 +311,10 @@ router.get('/students-home', function(req, res) {
                 };
                 // console.log(hbsObject);
                 res.render('students-home');
-
         });
- 
     });
-    
 });
+
 
 router.get('/tutors-home', function(req, res) {
     db.User.findOne(
@@ -374,11 +338,8 @@ router.get('/tutors-home', function(req, res) {
                 };
                 // console.log(hbsObject);
                 res.render('tutors-home');
-
         });
- 
     });
-    
 });
 
 router.get('/tutors', isLoggedIn, function(req, res, next) {
@@ -404,14 +365,7 @@ router.get('/tutors', isLoggedIn, function(req, res, next) {
                 };
                 // console.log(JSON.stringify(hbsObject));
                 res.render("tutors", hbsObject);
-
         });
-
-        
-
-
-
-        
     });
     // res.render('students');
 });
