@@ -1,21 +1,21 @@
 {
   "development": {
-    "username": "joey",
-    "password": "Oliver2121",
+    "username": "",
+    "password": "",
     "database": "tutors_db",
     "host": "localhost",
     "dialect": "mysql"
   },
   "test": {
-    "username": "joey",
-    "password": "Oliver2121",
-    "database": "tutors_db",
+    "username": "",
+    "password": "",
+    "database": "",
     "host": "localhost",
     "dialect": "mysql"
   },
   "production": {
-    "username": "joey",
-    "password": "Oliver2121",
+    "username": "",
+    "password": "",
     "database": "tutors_db",
     "host": "localhost",
     "dialect": "mysql"

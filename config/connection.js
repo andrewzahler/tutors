@@ -6,8 +6,8 @@ if (process.env.JAWSDB_URL) {
 } else {
   connection = mysql.createConnection({
     host: 'localhost',
-    user: 'joey',
-    password: 'Oliver2121',
+    user: '',
+    password: '',
     database: 'tutors_db',
     socketpath:'/var/run/mysqld/mysqld.sock'
 });
